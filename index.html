@@ -16,119 +16,112 @@
   --red-bg:#FEF0F0;--amber-bg:#FEF7EC;--green-bg:#EDFAF3;
 }
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-
-/* TOPBAR */
-.topbar{background:var(--blue-dark);padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
-.brand{display:flex;align-items:center;gap:14px}
-.logo-slot{width:44px;height:44px;border:2px dashed rgba(255,255,255,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:border-color .2s}
+.topbar{background:var(--blue-dark);padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
+.brand{display:flex;align-items:center;gap:12px}
+.logo-slot{width:42px;height:42px;border:2px dashed rgba(255,255,255,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .logo-slot:hover{border-color:rgba(255,255,255,.6)}
-.logo-slot svg{width:18px;height:18px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.logo-slot svg{width:17px;height:17px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .logo-slot img{width:100%;height:100%;object-fit:contain;border-radius:6px}
-.brand-text .name{font-size:15px;font-weight:600;color:#fff;letter-spacing:-.2px}
-.brand-text .src{font-size:11px;color:rgba(255,255,255,.5)}
-.tbactions{display:flex;gap:8px;align-items:center}
-.tbtn{font-family:inherit;font-size:12px;font-weight:500;padding:7px 14px;border:1px solid rgba(255,255,255,.2);border-radius:7px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+.brand-text .name{font-size:15px;font-weight:600;color:#fff}
+.brand-text .src{font-size:11px;color:rgba(255,255,255,.45)}
+.tbactions{display:flex;gap:7px}
+.tbtn{font-family:inherit;font-size:12px;font-weight:500;padding:7px 13px;border:1px solid rgba(255,255,255,.2);border-radius:7px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
 .tbtn:hover{background:rgba(255,255,255,.18)}
 .tbtn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tbtn.accent{background:var(--blue-mid);border-color:var(--blue-mid)}
 .tbtn.accent:hover{background:#2460AE}
-
-/* SUBBAR - filtros */
-.subbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 32px;display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.subbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
 .fg{display:flex;flex-direction:column;gap:3px}
 .fg label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
-.fg select,.fg input[type=text]{font-family:inherit;font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);min-width:130px}
-.fg select:focus,.fg input:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
+.fg select{font-family:inherit;font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);min-width:130px}
+.fg select:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
 .clrbtn{font-family:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text2);cursor:pointer;display:inline-flex;align-items:center;gap:5px;align-self:flex-end}
 .clrbtn:hover{background:var(--bg)}
 .clrbtn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
-
-/* UPLOAD */
-.upload-overlay{display:none;background:rgba(15,58,115,.04);border:2px dashed var(--blue);border-radius:12px;padding:24px 32px;margin:20px 32px 0;cursor:pointer;text-align:center;transition:background .2s}
+.upload-overlay{display:none;border:2px dashed var(--blue);border-radius:12px;padding:22px 28px;margin:20px 28px 0;cursor:pointer;text-align:center;background:var(--blue-light)}
 .upload-overlay.show{display:block}
-.upload-overlay:hover{background:var(--blue-light)}
+.upload-overlay:hover{background:#dce8f8}
 .upload-overlay strong{font-size:14px;color:var(--blue-dark);display:block;margin-bottom:6px}
 .upload-overlay p{font-size:12px;color:var(--text3);line-height:1.6}
-.upload-overlay code{background:var(--blue-light);color:var(--blue-dark);padding:1px 6px;border-radius:3px;font-size:11px}
+.upload-overlay code{background:#fff;color:var(--blue-dark);padding:1px 6px;border-radius:3px;font-size:11px}
 #fileInput,#logoInput{display:none}
-
-/* PAGE */
-.page{max-width:1280px;margin:0 auto;padding:24px 32px}
-
-/* KPI GRID */
-.kgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
+.page{max-width:1280px;margin:0 auto;padding:22px 28px}
+.kgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:18px}
 @media(max-width:960px){.kgrid{grid-template-columns:repeat(3,1fr)}}
-.kcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
+.kcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
 .kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue)}
 .kcard.re::before{background:var(--red)}.kcard.am::before{background:var(--amber)}.kcard.gr::before{background:var(--green)}.kcard.pu::before{background:#6B4FBB}
-.klbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;font-weight:600;margin-bottom:8px}
-.kval{font-size:22px;font-weight:700;color:var(--text);line-height:1;margin-bottom:4px}
+.klbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;font-weight:600;margin-bottom:7px}
+.kval{font-size:21px;font-weight:700;color:var(--text);line-height:1;margin-bottom:4px}
 .kdelta{font-size:11px;color:var(--text3)}
-.kdelta.up{color:var(--red)}.kdelta.dn{color:var(--green)}
-
-/* ALERT CARDS */
-.alerts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.acard{border-radius:10px;padding:14px 18px;border:1px solid transparent;display:flex;align-items:flex-start;gap:14px}
+.alerts{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:18px}
+.acard{border-radius:10px;padding:13px 16px;border:1px solid transparent;display:flex;align-items:flex-start;gap:12px}
 .acard.crit{background:var(--red-bg);border-color:#F5CACA}
 .acard.warn{background:var(--amber-bg);border-color:#F5DCA0}
 .acard.ok{background:var(--green-bg);border-color:#A8E0C0}
-.aicon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.aicon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .acard.crit .aicon{background:#F5CACA}.acard.warn .aicon{background:#F5DCA0}.acard.ok .aicon{background:#A8E0C0}
-.aicon svg{width:16px;height:16px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.aicon svg{width:15px;height:15px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .acard.crit .aicon svg{stroke:var(--red)}.acard.warn .aicon svg{stroke:var(--amber)}.acard.ok .aicon svg{stroke:var(--green)}
-.atitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.atitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
 .acard.crit .atitle{color:var(--red)}.acard.warn .atitle{color:var(--amber)}.acard.ok .atitle{color:var(--green)}
-.aval{font-size:24px;font-weight:700;line-height:1;margin-bottom:2px}
+.aval{font-size:22px;font-weight:700;line-height:1;margin-bottom:2px}
 .acard.crit .aval{color:var(--red)}.acard.warn .aval{color:var(--amber)}.acard.ok .aval{color:var(--green)}
 .asub{font-size:11px;color:var(--text3);line-height:1.4}
-
-/* CHARTS */
-.crow{display:grid;grid-template-columns:1.8fr 1fr;gap:14px;margin-bottom:14px}
-.crow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
-@media(max-width:900px){.crow,.crow3{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
-.card-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.crow{display:grid;grid-template-columns:1.8fr 1fr;gap:13px;margin-bottom:13px}
+.crow2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
+@media(max-width:900px){.crow,.crow2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px}
+.card-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px}
 .card-hd .t{font-size:13px;font-weight:700;color:var(--text)}
 .card-hd .badge-blue{font-size:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);padding:2px 8px;border-radius:4px}
-.csub{font-size:11px;color:var(--text3);margin-bottom:14px}
-.leg{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.csub{font-size:11px;color:var(--text3);margin-bottom:13px}
+.leg{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:9px}
 .li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
 .ld{width:9px;height:9px;border-radius:2px;flex-shrink:0}
-
-/* RANK LIST */
-.rank-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--bg)}
+/* FILIAIS PAINEL */
+.filial-drill{background:var(--blue-light);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:13px;display:none}
+.filial-drill.show{display:block}
+.drill-title{font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.drill-close{font-size:11px;color:var(--text3);cursor:pointer;padding:3px 8px;border:1px solid var(--border);border-radius:5px;background:#fff}
+.drill-close:hover{background:var(--bg)}
+.drill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.drill-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.drill-card .mot{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px}
+.drill-card .val{font-size:14px;font-weight:700;color:var(--blue)}
+.drill-card .sub{font-size:10px;color:var(--text3);margin-top:2px}
+/* TOP BARS */
+.top-row{display:flex;align-items:center;gap:9px;padding:5px 0;border-bottom:1px solid var(--bg)}
+.top-row:last-child{border:none}
+.top-n{font-size:11px;color:var(--text3);width:18px;text-align:center;flex-shrink:0;font-weight:700}
+.top-lbl{font-size:12px;font-weight:600;min-width:80px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top-sub{font-size:10px;color:var(--text3);min-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top-bar-wrap{flex:1;height:5px;background:var(--bg);border-radius:3px;overflow:hidden}
+.top-bar{height:100%;border-radius:3px}
+.top-val{font-size:11px;font-weight:700;min-width:76px;text-align:right;color:var(--text)}
+/* RANK */
+.rank-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bg)}
 .rank-row:last-child{border:none}
-.rn{font-size:11px;color:var(--text3);width:18px;text-align:center;flex-shrink:0;font-weight:700}
-.rlbl{font-size:12px;font-weight:600;min-width:78px;color:var(--text)}
-.rsub{font-size:10px;color:var(--text3)}
+.rn{font-size:11px;color:var(--text3);width:16px;text-align:center;flex-shrink:0;font-weight:700}
+.rlbl{font-size:12px;font-weight:600;min-width:72px;color:var(--text)}
 .rbar-wrap{flex:1;height:5px;background:var(--bg);border-radius:3px;overflow:hidden}
-.rbar{height:100%;border-radius:3px;background:var(--blue)}
-.rval{font-size:12px;font-weight:700;min-width:72px;text-align:right;color:var(--text)}
-
+.rbar{height:100%;border-radius:3px}
+.rval{font-size:11px;font-weight:700;min-width:64px;text-align:right;color:var(--text)}
 /* TABLE */
-.sec-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;flex-wrap:wrap;gap:8px}
 .sec-hd .t{font-size:13px;font-weight:700}.sec-hd .s{font-size:11px;color:var(--text3)}
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
-th{padding:9px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);border-bottom:2px solid var(--border);background:var(--bg);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+th{padding:8px 11px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);border-bottom:2px solid var(--border);background:var(--bg);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+td{padding:9px 11px;border-bottom:1px solid var(--border);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
 tr:last-child td{border:none}
 tr:hover td{background:var(--blue-light)}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
 .b-ok{background:var(--green-bg);color:var(--green)}.b-warn{background:var(--amber-bg);color:var(--amber)}.b-crit{background:var(--red-bg);color:var(--red)}
 .cost-hi{color:var(--red);font-weight:700}
-.cost-ok{color:var(--text)}
-
-/* TOP 10 bars */
-.top10-row{display:flex;align-items:center;gap:10px;padding:5px 0}
-.top10-placa{font-size:11px;font-weight:700;width:82px;flex-shrink:0;color:var(--text)}
-.top10-mot{font-size:10px;color:var(--text3);width:90px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.top10-bar-wrap{flex:1;height:6px;background:var(--bg);border-radius:3px;overflow:hidden}
-.top10-bar{height:100%;border-radius:3px}
-.top10-val{font-size:11px;font-weight:700;min-width:70px;text-align:right;color:var(--text)}
-
-/* FOOTER */
-.footer{margin-top:32px;padding:16px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:11px;color:var(--text3);flex-wrap:wrap;gap:8px}
+.footer{margin-top:28px;padding:14px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:11px;color:var(--text3);flex-wrap:wrap;gap:8px}
+.hint{text-align:center;padding:40px 20px;color:var(--text3);font-size:13px;border:2px dashed var(--border);border-radius:12px}
+.hint strong{display:block;font-size:15px;color:var(--text2);margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -140,7 +133,7 @@ tr:hover td{background:var(--blue-light)}
     </div>
     <div class="brand-text">
       <div class="name">Painel de Combustível</div>
-      <div class="src" id="srcLabel">Dados de demonstração</div>
+      <div class="src" id="srcLabel">Nenhuma planilha carregada</div>
     </div>
   </div>
   <div class="tbactions">
@@ -160,16 +153,12 @@ tr:hover td{background:var(--blue-light)}
 </div>
 
 <div class="subbar">
-  <div class="fg"><label>Veículo / Placa</label><select id="fVei" onchange="render()"><option value="">Todos</option></select></div>
+  <div class="fg"><label>Filial</label><select id="fFilial" onchange="render()"><option value="">Todas</option></select></div>
+  <div class="fg"><label>Placa</label><select id="fVei" onchange="render()"><option value="">Todas</option></select></div>
   <div class="fg"><label>Motorista</label><select id="fMot" onchange="render()"><option value="">Todos</option></select></div>
-  <div class="fg"><label>Departamento</label><select id="fDep" onchange="render()"><option value="">Todos</option></select></div>
+  <div class="fg"><label>Tipo Frota</label><select id="fFrota" onchange="render()"><option value="">Todos</option></select></div>
   <div class="fg"><label>Combustível</label><select id="fComb" onchange="render()"><option value="">Todos</option></select></div>
   <div class="fg"><label>Mês</label><select id="fMes" onchange="render()"><option value="">Todos</option></select></div>
-  <div class="fg"><label>Status</label>
-    <select id="fSt" onchange="render()">
-      <option value="">Todos</option><option>Normal</option><option>Alerta</option><option>Crítico</option>
-    </select>
-  </div>
   <button class="clrbtn" onclick="clearFilters()">
     <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
     Limpar
@@ -178,200 +167,229 @@ tr:hover td{background:var(--blue-light)}
 
 <div class="upload-overlay" id="upZone"
   onclick="document.getElementById('fileInput').click()"
-  ondragover="event.preventDefault();this.style.background='var(--blue-light)'"
-  ondragleave="this.style.background=''"
+  ondragover="event.preventDefault()"
   ondrop="drop(event)">
   <strong>Clique ou arraste a planilha aqui</strong>
-  <p>Aceita <code>.xlsx</code>, <code>.xls</code> ou <code>.csv</code> &nbsp;·&nbsp; Colunas detectadas automaticamente<br>
-  Espera: <code>Data</code> · <code>Placa / Veículo</code> · <code>Motorista</code> · <code>Departamento / Centro de custo</code> · <code>Combustível</code> · <code>Litros</code> · <code>Valor</code> · <code>Hodômetro</code></p>
+  <p>Aceita <code>.xlsx</code>, <code>.xls</code> ou <code>.csv</code><br>
+  Colunas usadas: <code>VALOR EMISSAO</code> · <code>LITROS</code> · <code>NOME REDUZIDO</code> · <code>PLACA</code> · <code>NOME MOTORISTA</code> · <code>TIPO COMBUSTIVEL</code> · <code>DATA TRANSACAO</code> · <code>TIPO FROTA</code> · <code>ODOMETRO</code></p>
 </div>
 <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="loadFile(event)">
 <input type="file" id="logoInput" accept="image/*" onchange="loadLogo(event)">
 
-<div class="page">
-
-  <div class="kgrid">
-    <div class="kcard"><div class="klbl">Gasto total</div><div class="kval" id="k1">—</div><div class="kdelta" id="k1d">no período</div></div>
-    <div class="kcard re"><div class="klbl">Custo médio / veículo</div><div class="kval" id="k2">—</div><div class="kdelta" id="k2d">por veículo ativo</div></div>
-    <div class="kcard am"><div class="klbl">Preço médio / litro</div><div class="kval" id="k3">—</div><div class="kdelta" id="k3d">média ponderada</div></div>
-    <div class="kcard gr"><div class="klbl">Total litros</div><div class="kval" id="k4">—</div><div class="kdelta" id="k4d">no período</div></div>
-    <div class="kcard pu"><div class="klbl">Abastecimentos</div><div class="kval" id="k5">—</div><div class="kdelta" id="k5d">registros</div></div>
-  </div>
-
-  <div class="alerts" id="alertBox"></div>
-
-  <!-- Evolução gasto mensal + share combustível -->
-  <div class="crow">
-    <div class="card">
-      <div class="card-hd"><span class="t">Evolução do gasto mensal (R$)</span></div>
-      <div class="csub">Custo total de combustível mês a mês</div>
-      <div style="position:relative;height:210px"><canvas id="cGasto"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-hd"><span class="t">Gasto por tipo de combustível</span></div>
-      <div class="csub">Distribuição do custo total no período</div>
-      <div id="legPie" class="leg"></div>
-      <div style="position:relative;height:175px"><canvas id="cPie"></canvas></div>
-    </div>
-  </div>
-
-  <!-- Top 10 + Gasto por departamento + Gasto por motorista -->
-  <div class="crow">
-    <div class="card">
-      <div class="card-hd"><span class="t">Top 10 — veículos com maior gasto</span><span class="badge-blue">Custo</span></div>
-      <div class="csub">Ranking acumulado no período filtrado</div>
-      <div id="top10List"></div>
-    </div>
-    <div class="card">
-      <div class="card-hd"><span class="t">Gasto por motorista</span></div>
-      <div class="csub">Top motoristas por custo total</div>
-      <div style="position:relative" id="motChartWrap"><canvas id="cMot"></canvas></div>
-    </div>
-  </div>
-
-  <!-- Gasto por departamento -->
-  <div class="crow">
-    <div class="card">
-      <div class="card-hd"><span class="t">Gasto por departamento / centro de custo</span></div>
-      <div class="csub">Comparativo de custo entre departamentos</div>
-      <div style="position:relative" id="depChartWrap"><canvas id="cDep"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-hd"><span class="t">Ranking de eficiência — km/L</span></div>
-      <div class="csub">Média por veículo · verde = eficiente · vermelho = atenção</div>
-      <div id="rankList"></div>
-    </div>
-  </div>
-
-  <!-- Tabela -->
-  <div class="card">
-    <div class="sec-hd">
-      <div><div class="t">Registros de abastecimento</div><div class="s" id="tblSub"></div></div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:11px;color:var(--text3)">Ordenar:</span>
-        <select id="sortSel" onchange="render()" style="font-family:inherit;font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:6px">
-          <option value="data">Data</option>
-          <option value="valor">Maior gasto</option>
-          <option value="litros">Maior volume</option>
-          <option value="kml">Menor km/L</option>
-          <option value="rpl">Maior R$/L</option>
-        </select>
-      </div>
-    </div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th style="width:82px">Data</th>
-          <th style="width:88px">Placa</th>
-          <th style="width:100px">Veículo</th>
-          <th style="width:110px">Motorista</th>
-          <th style="width:110px">Departamento</th>
-          <th style="width:95px">Combustível</th>
-          <th style="width:62px">Litros</th>
-          <th style="width:88px">Valor</th>
-          <th style="width:68px">R$/L</th>
-          <th style="width:88px">Hodômetro</th>
-          <th style="width:62px">km/L</th>
-          <th style="width:72px">Status</th>
-        </tr></thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="footer">
-    <span id="footerSrc">Dados de demonstração</span>
-    <span id="footerDate"></span>
+<div class="page" id="mainPage">
+  <div class="hint" id="hint">
+    <strong>Nenhuma planilha carregada</strong>
+    Clique em "Importar planilha" na barra superior para carregar seus dados.<br>
+    O painel lê automaticamente as colunas da sua planilha.
   </div>
 </div>
 
 <script>
-const DEMO=[
-  {data:'18/04/2026',mes:'04/2026',placa:'ABC-1234',veiculo:'Gol 2022',motorista:'Carlos Silva',depto:'Comercial',combustivel:'Gasolina',litros:52,valor:385,odometro:45320,kml:11.2},
-  {data:'17/04/2026',mes:'04/2026',placa:'DEF-5678',veiculo:'Onix 2023',motorista:'Ana Souza',depto:'Logística',combustivel:'Gasolina',litros:48,valor:355,odometro:23100,kml:12.4},
-  {data:'16/04/2026',mes:'04/2026',placa:'GHI-9012',veiculo:'HB20 2021',motorista:'João Lima',depto:'TI',combustivel:'Etanol',litros:60,valor:360,odometro:67800,kml:8.4},
-  {data:'15/04/2026',mes:'04/2026',placa:'JKL-3456',veiculo:'Kwid 2022',motorista:'Marcos Dias',depto:'Comercial',combustivel:'Gasolina',litros:55,valor:407,odometro:91200,kml:13.1},
-  {data:'14/04/2026',mes:'04/2026',placa:'MNO-7890',veiculo:'Polo 2023',motorista:'Fernanda Reis',depto:'RH',combustivel:'Gasolina',litros:50,valor:370,odometro:31200,kml:9.4},
-  {data:'13/04/2026',mes:'04/2026',placa:'PQR-1122',veiculo:'Argo 2021',motorista:'Ricardo Nunes',depto:'Financeiro',combustivel:'Gasolina',litros:45,valor:333,odometro:18900,kml:9.8},
-  {data:'12/04/2026',mes:'04/2026',placa:'STU-3344',veiculo:'Mobi 2022',motorista:'Patrícia Alves',depto:'Logística',combustivel:'Gasolina',litros:38,valor:281,odometro:55400,kml:10.6},
-  {data:'11/04/2026',mes:'04/2026',placa:'VWX-5566',veiculo:'T-Cross 2022',motorista:'Bruno Costa',depto:'Diretoria',combustivel:'Gasolina',litros:58,valor:442,odometro:38700,kml:10.1},
-  {data:'10/04/2026',mes:'04/2026',placa:'YZA-7788',veiculo:'Creta 2023',motorista:'Luciana Melo',depto:'Diretoria',combustivel:'Gasolina',litros:62,valor:473,odometro:29300,kml:5.2},
-  {data:'09/04/2026',mes:'04/2026',placa:'BCD-9900',veiculo:'Compass 2021',motorista:'Thiago Barros',depto:'Comercial',combustivel:'Etanol',litros:65,valor:390,odometro:72100,kml:7.6},
-  {data:'08/04/2026',mes:'04/2026',placa:'EFG-1234',veiculo:'Tracker 2022',motorista:'Claudia Faria',depto:'Marketing',combustivel:'Gasolina',litros:55,valor:407,odometro:44200,kml:11.3},
-  {data:'07/04/2026',mes:'04/2026',placa:'HIJ-5678',veiculo:'Duster 2021',motorista:'Paulo Rocha',depto:'Logística',combustivel:'Gasolina',litros:68,valor:503,odometro:88900,kml:4.1},
-  {data:'06/04/2026',mes:'04/2026',placa:'KLM-9012',veiculo:'Sandero 2022',motorista:'Mônica Torres',depto:'RH',combustivel:'Etanol',litros:54,valor:324,odometro:33500,kml:8.8},
-  {data:'05/04/2026',mes:'04/2026',placa:'NOP-3456',veiculo:'Logan 2023',motorista:'Diego Cunha',depto:'Financeiro',combustivel:'Gasolina',litros:49,valor:363,odometro:21800,kml:9.2},
-  {data:'25/03/2026',mes:'03/2026',placa:'ABC-1234',veiculo:'Gol 2022',motorista:'Carlos Silva',depto:'Comercial',combustivel:'Gasolina',litros:53,valor:400,odometro:44220,kml:11.5},
-  {data:'24/03/2026',mes:'03/2026',placa:'DEF-5678',veiculo:'Onix 2023',motorista:'Ana Souza',depto:'Logística',combustivel:'Gasolina',litros:47,valor:355,odometro:22620,kml:12.1},
-  {data:'23/03/2026',mes:'03/2026',placa:'JKL-3456',veiculo:'Kwid 2022',motorista:'Marcos Dias',depto:'Comercial',combustivel:'Gasolina',litros:54,valor:407,odometro:90640,kml:13.4},
-  {data:'22/03/2026',mes:'03/2026',placa:'VWX-5566',veiculo:'T-Cross 2022',motorista:'Bruno Costa',depto:'Diretoria',combustivel:'Gasolina',litros:60,valor:458,odometro:38100,kml:9.8},
-  {data:'21/03/2026',mes:'03/2026',placa:'YZA-7788',veiculo:'Creta 2023',motorista:'Luciana Melo',depto:'Diretoria',combustivel:'Gasolina',litros:64,valor:488,odometro:28700,kml:4.8},
-  {data:'20/03/2026',mes:'03/2026',placa:'HIJ-5678',veiculo:'Duster 2021',motorista:'Paulo Rocha',depto:'Logística',combustivel:'Gasolina',litros:70,valor:519,odometro:88200,kml:3.9},
-  {data:'19/03/2026',mes:'03/2026',placa:'GHI-9012',veiculo:'HB20 2021',motorista:'João Lima',depto:'TI',combustivel:'Etanol',litros:58,valor:348,odometro:67100,kml:8.6},
-  {data:'18/03/2026',mes:'03/2026',placa:'EFG-1234',veiculo:'Tracker 2022',motorista:'Claudia Faria',depto:'Marketing',combustivel:'Gasolina',litros:54,valor:400,odometro:43600,kml:10.9},
-  {data:'17/03/2026',mes:'03/2026',placa:'BCD-9900',veiculo:'Compass 2021',motorista:'Thiago Barros',depto:'Comercial',combustivel:'Etanol',litros:67,valor:402,odometro:71500,kml:7.2},
-  {data:'16/03/2026',mes:'03/2026',placa:'MNO-7890',veiculo:'Polo 2023',motorista:'Fernanda Reis',depto:'RH',combustivel:'Gasolina',litros:51,valor:377,odometro:30700,kml:9.7},
-  {data:'20/02/2026',mes:'02/2026',placa:'ABC-1234',veiculo:'Gol 2022',motorista:'Carlos Silva',depto:'Comercial',combustivel:'Gasolina',litros:51,valor:385,odometro:43140,kml:11.0},
-  {data:'19/02/2026',mes:'02/2026',placa:'VWX-5566',veiculo:'T-Cross 2022',motorista:'Bruno Costa',depto:'Diretoria',combustivel:'Gasolina',litros:59,valor:450,odometro:37500,kml:10.2},
-  {data:'18/02/2026',mes:'02/2026',placa:'YZA-7788',veiculo:'Creta 2023',motorista:'Luciana Melo',depto:'Diretoria',combustivel:'Gasolina',litros:62,valor:473,odometro:28100,kml:5.5},
-  {data:'17/02/2026',mes:'02/2026',placa:'HIJ-5678',veiculo:'Duster 2021',motorista:'Paulo Rocha',depto:'Logística',combustivel:'Gasolina',litros:69,valor:511,odometro:87500,kml:4.3},
-  {data:'16/02/2026',mes:'02/2026',placa:'JKL-3456',veiculo:'Kwid 2022',motorista:'Marcos Dias',depto:'Comercial',combustivel:'Etanol',litros:68,valor:408,odometro:89380,kml:8.6},
-  {data:'15/02/2026',mes:'02/2026',placa:'GHI-9012',veiculo:'HB20 2021',motorista:'João Lima',depto:'TI',combustivel:'Gasolina',litros:49,valor:363,odometro:66800,kml:10.7},
-  {data:'14/02/2026',mes:'02/2026',placa:'EFG-1234',veiculo:'Tracker 2022',motorista:'Claudia Faria',depto:'Marketing',combustivel:'Gasolina',litros:53,valor:393,odometro:43000,kml:11.1},
-  {data:'13/02/2026',mes:'02/2026',placa:'KLM-9012',veiculo:'Sandero 2022',motorista:'Mônica Torres',depto:'RH',combustivel:'Etanol',litros:55,valor:330,odometro:32900,kml:9.0},
-  {data:'12/02/2026',mes:'02/2026',placa:'DEF-5678',veiculo:'Onix 2023',motorista:'Ana Souza',depto:'Logística',combustivel:'Gasolina',litros:46,valor:341,odometro:22100,kml:11.4},
-  {data:'15/01/2026',mes:'01/2026',placa:'VWX-5566',veiculo:'T-Cross 2022',motorista:'Bruno Costa',depto:'Diretoria',combustivel:'Gasolina',litros:58,valor:435,odometro:36900,kml:10.4},
-  {data:'14/01/2026',mes:'01/2026',placa:'YZA-7788',veiculo:'Creta 2023',motorista:'Luciana Melo',depto:'Diretoria',combustivel:'Gasolina',litros:61,valor:459,odometro:27500,kml:4.9},
-  {data:'13/01/2026',mes:'01/2026',placa:'HIJ-5678',veiculo:'Duster 2021',motorista:'Paulo Rocha',depto:'Logística',combustivel:'Gasolina',litros:71,valor:527,odometro:86800,kml:3.7},
-  {data:'12/01/2026',mes:'01/2026',placa:'ABC-1234',veiculo:'Gol 2022',motorista:'Carlos Silva',depto:'Comercial',combustivel:'Gasolina',litros:52,valor:392,odometro:42080,kml:11.3},
-  {data:'11/01/2026',mes:'01/2026',placa:'JKL-3456',veiculo:'Kwid 2022',motorista:'Marcos Dias',depto:'Comercial',combustivel:'Gasolina',litros:53,valor:400,odometro:88700,kml:12.8},
-  {data:'10/01/2026',mes:'01/2026',placa:'GHI-9012',veiculo:'HB20 2021',motorista:'João Lima',depto:'TI',combustivel:'Gasolina',litros:48,valor:355,odometro:65790,kml:9.8},
-];
+let raw=[], charts={};
 
-const CORES={'Gasolina':'#1A56A0','Etanol':'#1A7A4A','GNV':'#6B4FBB','Flex':'#E07B00'};
-const cFor=f=>CORES[f]||'#888';
-const stOf=kml=>kml>0&&kml<6?'Crítico':kml>0&&kml<8?'Alerta':'Normal';
-const stCls=s=>s==='Crítico'?'b-crit':s==='Alerta'?'b-warn':'b-ok';
-const R=v=>Math.round(v*100)/100;
+// ── MAPEAMENTO EXATO DAS COLUNAS ──────────────────────────────────────────────
+function mapRow(r){
+  const keys=Object.keys(r);
+  const get=(...terms)=>{
+    const k=keys.find(k=>terms.some(t=>k.trim().toUpperCase().includes(t.toUpperCase())));
+    return k?String(r[k]??'').trim():'';
+  };
+  const getNum=(...terms)=>{
+    const v=get(...terms);
+    return parseFloat(v.replace(/[R$\s]/g,'').replace(/\./g,'').replace(',','.'))||0;
+  };
 
-let raw=DEMO,charts={};
-document.getElementById('footerDate').textContent='Atualizado em '+new Date().toLocaleDateString('pt-BR');
+  const valor  = getNum('VALOR EMISSAO','VALOR_EMISSAO','EMISSAO');
+  const litros = getNum('LITROS');
+  const odo    = getNum('ODOMETRO','HORIMETRO');
+  const vlitro = getNum('VL/LITRO','VLLITRO','VL LITRO');
+
+  const dataRaw = get('DATA TRANSACAO','DATA_TRANSACAO','DATA');
+  let dt='—', mes='—';
+  if(dataRaw){
+    // tenta parse — formato pode ser "02/01/2026 07:00:28"
+    const parts = dataRaw.split(' ')[0]; // pega só a data sem hora
+    const [d,m,y] = parts.includes('/') ? parts.split('/') : parts.split('-').reverse();
+    if(d&&m&&y){
+      dt = `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y}`;
+      mes = `${m.padStart(2,'0')}/${y}`;
+    }
+  }
+
+  const kml = odo>0&&litros>0 ? parseFloat((odo/litros).toFixed(1)) : 0;
+
+  return{
+    data: dt,
+    mes,
+    filial:   get('NOME REDUZIDO','NOME_REDUZIDO','FILIAL'),
+    placa:    get('PLACA'),
+    motorista:get('NOME MOTORISTA','NOME_MOTORISTA','MOTORISTA'),
+    frota:    get('TIPO FROTA','TIPO_FROTA','FROTA'),
+    modelo:   get('MODELO VEICULO','MODELO_VEICULO','MODELO'),
+    combustivel: get('TIPO COMBUSTIVEL','TIPO_COMBUSTIVEL','COMBUSTIVEL'),
+    servico:  get('SERVICO','SERVIÇO'),
+    litros, valor, odo, vlitro, kml,
+  };
+}
+
+function stOf(kml){return kml>0&&kml<6?'Crítico':kml>0&&kml<8?'Alerta':'Normal';}
+function stCls(s){return s==='Crítico'?'b-crit':s==='Alerta'?'b-warn':'b-ok';}
+
+const CORES={'GASOLINA COMUM':'#1A56A0','GASOLINA ADITIVADA':'#2E6FC4','ETANOL':'#1A7A4A','DIESEL S-10 COMUM':'#6B4FBB','DIESEL S-10 ADITIVADO':'#854FBB','DIESEL S-500':'#B8860B','GNV':'#E07B00'};
+const cFor=f=>{const up=f.toUpperCase();const k=Object.keys(CORES).find(c=>up.includes(c));return k?CORES[k]:'#8A96A8';};
 
 function filtered(){
-  const v=document.getElementById('fVei').value,mt=document.getElementById('fMot').value,
-        dp=document.getElementById('fDep').value,c=document.getElementById('fComb').value,
-        m=document.getElementById('fMes').value,s=document.getElementById('fSt').value;
+  const fil=document.getElementById('fFilial').value;
+  const v=document.getElementById('fVei').value;
+  const mt=document.getElementById('fMot').value;
+  const fr=document.getElementById('fFrota').value;
+  const c=document.getElementById('fComb').value;
+  const m=document.getElementById('fMes').value;
   return raw.filter(r=>
-    (!v||r.placa===v)&&(!mt||r.motorista===mt)&&
-    (!dp||r.depto===dp)&&(!c||r.combustivel===c)&&
-    (!m||r.mes===m)&&(!s||stOf(r.kml)===s)
+    (!fil||r.filial===fil)&&(!v||r.placa===v)&&
+    (!mt||r.motorista===mt)&&(!fr||r.frota===fr)&&
+    (!c||r.combustivel===c)&&(!m||r.mes===m)
   );
 }
 
+function uniq(arr,k){return[...new Set(arr.map(r=>r[k]).filter(Boolean))].sort();}
+
 function populateSelects(){
-  const uniq=(arr,k)=>[...new Set(arr.map(r=>r[k]))].sort();
-  const fill=(id,arr)=>{const el=document.getElementById(id),cur=el.value;el.innerHTML='<option value="">Todos</option>'+arr.map(v=>`<option${v===cur?' selected':''}>${v}</option>`).join('');};
-  fill('fVei',uniq(raw,'placa'));fill('fMot',uniq(raw,'motorista'));
-  fill('fDep',uniq(raw,'depto'));fill('fComb',uniq(raw,'combustivel'));fill('fMes',uniq(raw,'mes'));
+  const fill=(id,arr)=>{
+    const el=document.getElementById(id),cur=el.value;
+    el.innerHTML='<option value="">Todos</option>'+arr.map(v=>`<option${v===cur?' selected':''}>${v}</option>`).join('');
+  };
+  fill('fFilial',uniq(raw,'filial'));
+  fill('fVei',uniq(raw,'placa'));
+  fill('fMot',uniq(raw,'motorista'));
+  fill('fFrota',uniq(raw,'frota'));
+  fill('fComb',uniq(raw,'combustivel'));
+  fill('fMes',uniq(raw,'mes'));
 }
 
-function clearFilters(){['fVei','fMot','fDep','fComb','fMes','fSt'].forEach(id=>document.getElementById(id).value='');render();}
+function clearFilters(){['fFilial','fVei','fMot','fFrota','fComb','fMes'].forEach(id=>document.getElementById(id).value='');render();}
 
+// ── RENDER PRINCIPAL ──────────────────────────────────────────────────────────
 function render(){
   const d=filtered();
-  renderKPIs(d);renderAlerts(d);renderCharts(d);renderTop10(d);renderRank(d);renderTable(d);
+  const page=document.getElementById('mainPage');
+  if(!raw.length){page.innerHTML='<div class="hint" id="hint"><strong>Nenhuma planilha carregada</strong>Clique em "Importar planilha" na barra superior.</div>';return;}
+
+  page.innerHTML=`
+    <div class="kgrid">
+      <div class="kcard"><div class="klbl">Gasto total</div><div class="kval" id="k1">—</div><div class="kdelta" id="k1d">no período</div></div>
+      <div class="kcard re"><div class="klbl">Custo médio / veículo</div><div class="kval" id="k2">—</div><div class="kdelta" id="k2d">por veículo ativo</div></div>
+      <div class="kcard am"><div class="klbl">Preço médio / litro</div><div class="kval" id="k3">—</div><div class="kdelta" id="k3d">média ponderada</div></div>
+      <div class="kcard gr"><div class="klbl">Total litros</div><div class="kval" id="k4">—</div><div class="kdelta">no período</div></div>
+      <div class="kcard pu"><div class="klbl">Abastecimentos</div><div class="kval" id="k5">—</div><div class="kdelta">registros</div></div>
+    </div>
+    <div class="alerts" id="alertBox"></div>
+
+    <div class="crow">
+      <div class="card">
+        <div class="card-hd"><span class="t">Evolução do gasto mensal (R$)</span></div>
+        <div class="csub">Custo total de combustível mês a mês</div>
+        <div style="position:relative;height:200px"><canvas id="cGasto"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><span class="t">Gasto por tipo de combustível</span></div>
+        <div class="csub">Distribuição do custo total no período</div>
+        <div id="legPie" class="leg"></div>
+        <div style="position:relative;height:170px"><canvas id="cPie"></canvas></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:13px">
+      <div class="card-hd"><span class="t">Gasto por filial</span><span class="badge-blue">Clique na barra para ver condutores</span></div>
+      <div class="csub">Custo total por unidade — clique em uma filial para ver o detalhamento por motorista</div>
+      <div style="position:relative" id="filialChartWrap"><canvas id="cFilial"></canvas></div>
+    </div>
+
+    <div class="filial-drill" id="drillPanel">
+      <div class="drill-title">
+        <span id="drillTitle">Detalhamento</span>
+        <span class="drill-close" onclick="closeDrill()">✕ Fechar</span>
+      </div>
+      <div class="drill-grid" id="drillGrid"></div>
+    </div>
+
+    <div class="crow2">
+      <div class="card">
+        <div class="card-hd"><span class="t">Top 15 — veículos com maior gasto</span><span class="badge-blue">Custo</span></div>
+        <div class="csub">Ranking acumulado no período filtrado</div>
+        <div id="top10List"></div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><span class="t">Top 15 — motoristas com maior gasto</span></div>
+        <div class="csub">Custo total por condutor no período</div>
+        <div id="motList"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:13px">
+      <div class="card-hd"><span class="t">Ranking de eficiência — km/L por veículo</span></div>
+      <div class="csub">Média por placa · verde = eficiente · vermelho = atenção</div>
+      <div id="rankList"></div>
+    </div>
+
+    <div class="card">
+      <div class="sec-hd">
+        <div><div class="t">Registros de abastecimento</div><div class="s" id="tblSub"></div></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;color:var(--text3)">Ordenar:</span>
+          <select id="sortSel" onchange="renderTable(filtered())" style="font-family:inherit;font-size:12px;padding:5px 9px;border:1px solid var(--border);border-radius:6px">
+            <option value="data">Data</option>
+            <option value="valor">Maior gasto</option>
+            <option value="litros">Maior volume</option>
+            <option value="kml">Menor km/L</option>
+          </select>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th style="width:88px">Data</th>
+            <th style="width:88px">Filial</th>
+            <th style="width:82px">Placa</th>
+            <th style="width:90px">Modelo</th>
+            <th style="width:80px">Frota</th>
+            <th style="width:115px">Motorista</th>
+            <th style="width:110px">Combustível</th>
+            <th style="width:62px">Litros</th>
+            <th style="width:90px">Valor</th>
+            <th style="width:68px">R$/L</th>
+            <th style="width:88px">Odômetro</th>
+            <th style="width:62px">km/L</th>
+            <th style="width:72px">Status</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span id="footerSrc"></span>
+      <span id="footerDate">Atualizado em ${new Date().toLocaleDateString('pt-BR')}</span>
+    </div>
+  `;
+
+  renderKPIs(d);
+  renderAlerts(d);
+  renderCharts(d);
+  renderTop15(d);
+  renderRank(d);
+  renderTable(d);
 }
 
 function renderKPIs(d){
   const V=d.reduce((s,r)=>s+r.valor,0);
   const L=d.reduce((s,r)=>s+r.litros,0);
-  const veics=new Set(d.map(r=>r.placa)).size;
-  const kmls=d.filter(r=>r.kml>0);
+  const veics=new Set(d.map(r=>r.placa).filter(Boolean)).size;
   document.getElementById('k1').textContent=V.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
   document.getElementById('k2').textContent=veics>0?(V/veics).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}):'—';
   document.getElementById('k3').textContent=L>0?'R$'+(V/L).toFixed(2).replace('.',','):'—';
   document.getElementById('k4').textContent=L.toLocaleString('pt-BR',{maximumFractionDigits:0})+' L';
-  document.getElementById('k5').textContent=d.length;
+  document.getElementById('k5').textContent=d.length.toLocaleString('pt-BR');
   document.getElementById('k2d').textContent=veics+' veículos ativos';
 }
 
@@ -379,38 +397,41 @@ function renderAlerts(d){
   const crits=d.filter(r=>stOf(r.kml)==='Crítico');
   const warns=d.filter(r=>stOf(r.kml)==='Alerta');
   const oks=d.filter(r=>stOf(r.kml)==='Normal');
-  const piorVei=Object.entries(d.filter(r=>r.kml>0).reduce((acc,r)=>{if(!acc[r.placa])acc[r.placa]=[];acc[r.placa].push(r.kml);return acc},{}))
-    .map(([p,ks])=>({p,avg:ks.reduce((s,k)=>s+k,0)/ks.length})).sort((a,b)=>a.avg-b.avg)[0];
-  const piorMot=Object.entries(d.reduce((acc,r)=>{if(!acc[r.motorista])acc[r.motorista]=0;acc[r.motorista]+=r.valor;return acc},{}))
-    .sort((a,b)=>b[1]-a[1])[0];
+  const veiKml={};
+  d.filter(r=>r.kml>0).forEach(r=>{if(!veiKml[r.placa])veiKml[r.placa]=[];veiKml[r.placa].push(r.kml);});
+  const pior=Object.entries(veiKml).map(([p,ks])=>({p,avg:ks.reduce((s,k)=>s+k,0)/ks.length})).sort((a,b)=>a.avg-b.avg)[0];
+  const motGasto=Object.entries(d.reduce((acc,r)=>{acc[r.motorista]=(acc[r.motorista]||0)+r.valor;return acc},{})).sort((a,b)=>b[1]-a[1])[0];
   document.getElementById('alertBox').innerHTML=`
     <div class="acard crit">
       <div class="aicon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-      <div><div class="atitle">Consumo crítico</div><div class="aval">${crits.length}</div><div class="asub">Abastecimentos com km/L abaixo de 6,0<br>${piorVei?'Pior veículo: '+piorVei.p+' ('+piorVei.avg.toFixed(1)+' km/L)':''}</div></div>
+      <div><div class="atitle">Consumo crítico</div><div class="aval">${crits.length.toLocaleString('pt-BR')}</div>
+      <div class="asub">km/L abaixo de 6,0${pior?'<br>Pior: '+pior.p+' ('+pior.avg.toFixed(1)+' km/L)':''}</div></div>
     </div>
     <div class="acard warn">
       <div class="aicon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      <div><div class="atitle">Em alerta</div><div class="aval">${warns.length}</div><div class="asub">km/L entre 6,0 e 8,0<br>Verificar manutenção preventiva</div></div>
+      <div><div class="atitle">Em alerta</div><div class="aval">${warns.length.toLocaleString('pt-BR')}</div>
+      <div class="asub">km/L entre 6,0 e 8,0<br>Verificar manutenção preventiva</div></div>
     </div>
     <div class="acard ok">
       <div class="aicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div><div class="atitle">Normais</div><div class="aval">${oks.length}</div><div class="asub">${piorMot?'Maior gasto: '+piorMot[0]+' ('+piorMot[1].toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})+')':'km/L acima de 8,0'}</div></div>
+      <div><div class="atitle">Normais</div><div class="aval">${oks.length.toLocaleString('pt-BR')}</div>
+      <div class="asub">${motGasto?'Maior gasto: '+motGasto[0]+'<br>'+motGasto[1].toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}):'km/L acima de 8,0'}</div></div>
     </div>`;
 }
 
 function dc(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
 
 function renderCharts(d){
-  const meses=[...new Set(d.map(r=>r.mes))].sort();
-  const combs=[...new Set(d.map(r=>r.combustivel))].sort();
+  const meses=uniq(d,'mes');
+  const combs=uniq(d,'combustivel');
   const gastoM=meses.map(m=>Math.round(d.filter(r=>r.mes===m).reduce((s,r)=>s+r.valor,0)));
 
   dc('cGasto');
   charts['cGasto']=new Chart(document.getElementById('cGasto'),{
     type:'bar',
     data:{labels:meses,datasets:[
-      {type:'bar',label:'Gasto',data:gastoM,backgroundColor:'#1A56A022',borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4},
-      {type:'line',label:'Tendência',data:gastoM,borderColor:'#E24B4A',borderWidth:2,tension:.4,pointRadius:4,pointBackgroundColor:'#E24B4A',fill:false}
+      {type:'bar',data:gastoM,backgroundColor:'#1A56A022',borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4},
+      {type:'line',data:gastoM,borderColor:'#D94040',borderWidth:2,tension:.4,pointRadius:4,pointBackgroundColor:'#D94040',fill:false}
     ]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
       scales:{x:{ticks:{font:{size:10}},grid:{display:false}},
@@ -428,53 +449,84 @@ function renderCharts(d){
       tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})} (${Math.round(c.parsed*100/totV)}%)`}}}}
   });
 
-  const mots=Object.entries(d.reduce((acc,r)=>{if(!acc[r.motorista])acc[r.motorista]=0;acc[r.motorista]+=r.valor;return acc},{}))
-    .sort((a,b)=>b[1]-a[1]).slice(0,10);
-  const mh=Math.max(mots.length*38+60,100);
-  document.getElementById('motChartWrap').style.height=mh+'px';
-  dc('cMot');
-  charts['cMot']=new Chart(document.getElementById('cMot'),{
+  // GRÁFICO FILIAIS — clicável
+  const filiais=Object.entries(d.reduce((acc,r)=>{acc[r.filial]=(acc[r.filial]||0)+r.valor;return acc},{}))
+    .filter(([k])=>k&&k!=='—').sort((a,b)=>b[1]-a[1]);
+  const fh=Math.max(filiais.length*36+60,120);
+  document.getElementById('filialChartWrap').style.height=fh+'px';
+  dc('cFilial');
+  charts['cFilial']=new Chart(document.getElementById('cFilial'),{
     type:'bar',
-    data:{labels:mots.map(m=>m[0]),datasets:[{data:mots.map(m=>Math.round(m[1])),backgroundColor:'#1A56A044',borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:c=>` R$ ${c.parsed.toLocaleString('pt-BR',{maximumFractionDigits:0})}`}}},
-      scales:{x:{ticks:{font:{size:10},callback:v=>'R$'+(v/1000).toFixed(0)+'k'},grid:{color:'rgba(0,0,0,0.04)'}},y:{ticks:{font:{size:10}},grid:{display:false}}}}
-  });
-
-  const deps=Object.entries(d.reduce((acc,r)=>{if(!acc[r.depto])acc[r.depto]=0;acc[r.depto]+=r.valor;return acc},{}))
-    .sort((a,b)=>b[1]-a[1]);
-  const dh=Math.max(deps.length*38+60,100);
-  document.getElementById('depChartWrap').style.height=dh+'px';
-  dc('cDep');
-  charts['cDep']=new Chart(document.getElementById('cDep'),{
-    type:'bar',
-    data:{labels:deps.map(d=>d[0]),datasets:[{data:deps.map(d=>Math.round(d[1])),backgroundColor:deps.map((_,i)=>i===0?'#1A56A0':'#1A56A044'),borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:c=>` R$ ${c.parsed.toLocaleString('pt-BR',{maximumFractionDigits:0})}`}}},
-      scales:{x:{ticks:{font:{size:10},callback:v=>'R$'+(v/1000).toFixed(0)+'k'},grid:{color:'rgba(0,0,0,0.04)'}},y:{ticks:{font:{size:10}},grid:{display:false}}}}
+    data:{labels:filiais.map(f=>f[0]),datasets:[{data:filiais.map(f=>Math.round(f[1])),backgroundColor:'#1A56A044',borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4,hoverBackgroundColor:'#1A56A0'}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` R$ ${c.parsed.toLocaleString('pt-BR',{maximumFractionDigits:0})}`}}},
+      scales:{x:{ticks:{font:{size:10},callback:v=>'R$'+(v/1000).toFixed(0)+'k'},grid:{color:'rgba(0,0,0,0.04)'}},
+              y:{ticks:{font:{size:11}},grid:{display:false}}},
+      onClick:(evt,els)=>{
+        if(!els.length)return;
+        const idx=els[0].index;
+        const filialNome=filiais[idx][0];
+        openDrill(filialNome,d);
+      }
+    }
   });
 }
 
-function renderTop10(d){
-  const veiGasto=Object.entries(d.reduce((acc,r)=>{
-    if(!acc[r.placa])acc[r.placa]={v:r.valor,mot:r.motorista,nome:r.veiculo};
-    else acc[r.placa].v+=r.valor;
+function openDrill(filialNome, d){
+  const sub=d.filter(r=>r.filial===filialNome);
+  const motores=Object.entries(sub.reduce((acc,r)=>{
+    if(!acc[r.motorista])acc[r.motorista]={valor:0,litros:0,abs:0};
+    acc[r.motorista].valor+=r.valor;
+    acc[r.motorista].litros+=r.litros;
+    acc[r.motorista].abs+=1;
     return acc;
-  },{})).sort((a,b)=>b[1].v-a[1].v).slice(0,10);
-  const max=veiGasto[0]?.[1].v||1;
+  },{})).sort((a,b)=>b[1].valor-a[1].valor);
+
+  document.getElementById('drillTitle').textContent='Filial: '+filialNome+' — detalhamento por motorista';
+  document.getElementById('drillGrid').innerHTML=motores.map(([mot,v])=>`
+    <div class="drill-card">
+      <div class="mot">${mot||'—'}</div>
+      <div class="val">${v.valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})}</div>
+      <div class="sub">${v.litros.toFixed(0)} L · ${v.abs} abastecimento${v.abs!==1?'s':''}</div>
+    </div>`).join('');
+  document.getElementById('drillPanel').classList.add('show');
+  document.getElementById('drillPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function closeDrill(){document.getElementById('drillPanel').classList.remove('show');}
+
+function renderTop15(d){
+  const veiGasto=Object.entries(d.reduce((acc,r)=>{
+    if(!acc[r.placa])acc[r.placa]={v:0,mot:r.motorista,modelo:r.modelo};
+    acc[r.placa].v+=r.valor;return acc;
+  },{})).sort((a,b)=>b[1].v-a[1].v).slice(0,15);
+  const maxV=veiGasto[0]?.[1].v||1;
   document.getElementById('top10List').innerHTML=veiGasto.map(([placa,d],i)=>`
-    <div class="top10-row">
-      <span class="top10-placa">${i+1}. ${placa}</span>
-      <span class="top10-mot">${d.mot}</span>
-      <div class="top10-bar-wrap"><div class="top10-bar" style="width:${Math.round(d.v*100/max)}%;background:${i===0?'#D94040':i<3?'#E07B00':'#1A56A0'}"></div></div>
-      <span class="top10-val">${d.v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})}</span>
+    <div class="top-row">
+      <span class="top-n">${i+1}</span>
+      <span class="top-lbl" title="${placa}">${placa}</span>
+      <span class="top-sub" title="${d.mot}">${d.mot}</span>
+      <div class="top-bar-wrap"><div class="top-bar" style="width:${Math.round(d.v*100/maxV)}%;background:${i===0?'#D94040':i<3?'#E07B00':'#1A56A0'}"></div></div>
+      <span class="top-val">${d.v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})}</span>
+    </div>`).join('');
+
+  const motGasto=Object.entries(d.reduce((acc,r)=>{acc[r.motorista]=(acc[r.motorista]||0)+r.valor;return acc},{}))
+    .filter(([k])=>k&&k!=='—').sort((a,b)=>b[1]-a[1]).slice(0,15);
+  const maxM=motGasto[0]?.[1]||1;
+  document.getElementById('motList').innerHTML=motGasto.map(([mot,v],i)=>`
+    <div class="top-row">
+      <span class="top-n">${i+1}</span>
+      <span class="top-lbl" style="min-width:120px" title="${mot}">${mot}</span>
+      <div class="top-bar-wrap"><div class="top-bar" style="width:${Math.round(v*100/maxM)}%;background:${i===0?'#D94040':i<3?'#E07B00':'#1A56A0'}"></div></div>
+      <span class="top-val">${v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})}</span>
     </div>`).join('');
 }
 
 function renderRank(d){
   const veiKml={};
   d.filter(r=>r.kml>0).forEach(r=>{if(!veiKml[r.placa])veiKml[r.placa]=[];veiKml[r.placa].push(r.kml);});
-  const ranked=Object.entries(veiKml).map(([p,ks])=>({p,avg:ks.reduce((s,k)=>s+k,0)/ks.length})).sort((a,b)=>b.avg-a.avg).slice(0,12);
+  const ranked=Object.entries(veiKml).map(([p,ks])=>({p,avg:ks.reduce((s,k)=>s+k,0)/ks.length}))
+    .sort((a,b)=>b.avg-a.avg).slice(0,20);
   const max=ranked[0]?.avg||1;
   document.getElementById('rankList').innerHTML=ranked.map((r,i)=>`
     <div class="rank-row">
@@ -486,65 +538,54 @@ function renderRank(d){
 }
 
 function renderTable(d){
-  const key=document.getElementById('sortSel').value;
-  const avgVal=d.reduce((s,r)=>s+r.valor,0)/(d.length||1);
-  const sorted=[...d].sort((a,b)=>key==='data'?b.data.split('/').reverse().join('').localeCompare(a.data.split('/').reverse().join('')):b[key]-a[key]);
-  document.getElementById('tblSub').textContent=`${sorted.length} registro${sorted.length!==1?'s':''}`;
+  const key=document.getElementById('sortSel')?.value||'data';
+  const avgV=d.reduce((s,r)=>s+r.valor,0)/(d.length||1);
+  const sorted=[...d].sort((a,b)=>key==='data'
+    ? b.data.split('/').reverse().join('').localeCompare(a.data.split('/').reverse().join(''))
+    : b[key]-a[key]);
+  document.getElementById('tblSub').textContent=`${sorted.length.toLocaleString('pt-BR')} registro${sorted.length!==1?'s':''}`;
   document.getElementById('tbody').innerHTML=sorted.map(r=>{
     const st=stOf(r.kml);
-    const hiCost=r.valor>avgVal*1.5;
     return`<tr>
       <td>${r.data}</td>
+      <td title="${r.filial}">${r.filial}</td>
       <td style="font-weight:700">${r.placa}</td>
-      <td>${r.veiculo}</td>
-      <td>${r.motorista}</td>
-      <td>${r.depto}</td>
+      <td>${r.modelo}</td>
+      <td>${r.frota}</td>
+      <td title="${r.motorista}">${r.motorista}</td>
       <td>${r.combustivel}</td>
       <td>${r.litros.toLocaleString('pt-BR',{maximumFractionDigits:1})}</td>
-      <td class="${hiCost?'cost-hi':'cost-ok'}">${r.valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</td>
+      <td class="${r.valor>avgV*1.5?'cost-hi':''}">${r.valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</td>
       <td>${r.litros>0?'R$'+(r.valor/r.litros).toFixed(2).replace('.',','):'—'}</td>
-      <td>${r.odometro>0?r.odometro.toLocaleString('pt-BR'):'—'}</td>
+      <td>${r.odo>0?r.odo.toLocaleString('pt-BR'):'—'}</td>
       <td>${r.kml>0?r.kml.toFixed(1).replace('.',','):'—'}</td>
       <td><span class="badge ${stCls(st)}">${st}</span></td>
     </tr>`;
   }).join('');
 }
 
+// ── UPLOAD ─────────────────────────────────────────────────────────────────────
 function toggleUpload(){document.getElementById('upZone').classList.toggle('show');}
-function drop(e){e.preventDefault();e.currentTarget.style.background='';const f=e.dataTransfer.files[0];if(f)processFile(f);}
+function drop(e){e.preventDefault();const f=e.dataTransfer.files[0];if(f)processFile(f);}
 function loadFile(e){const f=e.target.files[0];if(f)processFile(f);}
 
 function processFile(file){
   const reader=new FileReader();
   reader.onload=function(ev){
     try{
-      const wb=XLSX.read(ev.target.result,{type:'binary',cellDates:true});
+      const wb=XLSX.read(ev.target.result,{type:'binary',cellDates:false});
       const ws=wb.Sheets[wb.SheetNames[0]];
       const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
       if(!rows.length){alert('Planilha vazia.');return;}
-      const keys=Object.keys(rows[0]);
-      const col=(...t)=>{const k=keys.find(k=>t.some(s=>k.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\s_\-]/g,'').includes(s)));return k||null;};
-      const cD=col('data','date','dia'),cP=col('placa','veiculo','carro'),cN=col('nome','modelo','descricao'),
-            cMt=col('motorista','condutor','driver'),cDp=col('depto','departamento','setor','centro','custo'),
-            cC=col('combustivel','tipo','fuel'),cL=col('litro','volume','qty','quantidade'),
-            cV=col('valor','custo','total','preco','gasto'),cO=col('odometro','km','hodometro','quilom');
-      raw=rows.map(r=>{
-        const L=parseFloat(String(r[cL]||'').replace(',','.'))||0;
-        const V=parseFloat(String(r[cV]||'').replace(/[R$\s]/g,'').replace(',','.'))||0;
-        const O=parseFloat(String(r[cO]||'').replace(/\./g,'').replace(',','.'))||0;
-        const kml=O>0&&L>0?parseFloat((O/L).toFixed(1)):0;
-        let dt='—',mes='—';
-        if(r[cD]){const dv=r[cD],obj=dv instanceof Date?dv:new Date(dv);if(!isNaN(obj)){dt=obj.toLocaleDateString('pt-BR');mes=String(obj.getMonth()+1).padStart(2,'0')+'/'+obj.getFullYear();}}
-        return{data:dt,mes,placa:String(r[cP]||'—').trim(),veiculo:cN?String(r[cN]||'—').trim():'—',
-               motorista:cMt?String(r[cMt]||'—').trim():'—',depto:cDp?String(r[cDp]||'—').trim():'Geral',
-               combustivel:String(r[cC]||'—').trim(),litros:L,valor:V,odometro:O,kml};
-      }).filter(r=>r.litros>0);
-      if(!raw.length){alert('Nenhum registro válido encontrado.');return;}
-      document.getElementById('srcLabel').textContent=file.name+' · '+raw.length+' registros';
-      document.getElementById('footerSrc').textContent='Fonte: '+file.name;
+      raw=rows.map(mapRow).filter(r=>r.valor>0||r.litros>0);
+      if(!raw.length){alert('Nenhum registro válido encontrado. Verifique se a coluna VALOR EMISSAO e LITROS estão preenchidas.');return;}
+      document.getElementById('srcLabel').textContent=file.name+' · '+raw.length.toLocaleString('pt-BR')+' registros';
       document.getElementById('upZone').classList.remove('show');
       populateSelects();render();
-    }catch(err){alert('Erro ao ler o arquivo. Verifique se é .xlsx, .xls ou .csv.');}
+    }catch(err){
+      console.error(err);
+      alert('Erro ao ler o arquivo.\n'+err.message);
+    }
   };
   reader.readAsBinaryString(file);
 }
@@ -552,7 +593,7 @@ function processFile(file){
 function loadLogo(e){
   const f=e.target.files[0];if(!f)return;
   const reader=new FileReader();
-  reader.onload=function(ev){
+  reader.onload=ev=>{
     const slot=document.getElementById('logoSlot');
     slot.innerHTML=`<img src="${ev.target.result}" alt="Logo">`;
     slot.onclick=null;
@@ -561,16 +602,15 @@ function loadLogo(e){
 }
 
 function exportCSV(){
+  if(!raw.length){alert('Nenhum dado para exportar.');return;}
   const d=filtered();
-  const hdr='Data,Placa,Veículo,Motorista,Departamento,Combustível,Litros,Valor,R$/L,Hodômetro,km/L,Status\n';
-  const rows=d.map(r=>[r.data,r.placa,r.veiculo,r.motorista,r.depto,r.combustivel,
-    r.litros,r.valor.toFixed(2),r.litros>0?(r.valor/r.litros).toFixed(2):'',r.odometro,r.kml,stOf(r.kml)].join(',')).join('\n');
+  const hdr='Data,Filial,Placa,Modelo,Frota,Motorista,Combustível,Litros,Valor,R$/L,Odômetro,km/L,Status\n';
+  const rows=d.map(r=>[r.data,r.filial,r.placa,r.modelo,r.frota,r.motorista,r.combustivel,
+    r.litros.toFixed(2),r.valor.toFixed(2),r.litros>0?(r.valor/r.litros).toFixed(2):'',r.odo,r.kml,stOf(r.kml)].join(',')).join('\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob(['\uFEFF'+hdr+rows],{type:'text/csv;charset=utf-8'}));
   a.download='combustivel-export.csv';a.click();
 }
-
-populateSelects();render();
 </script>
 </body>
 </html>
