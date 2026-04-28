@@ -653,6 +653,63 @@ function exportCSV(){
   a.download='combustivel-export.csv';a.click();
 }
 
+function buildSVGGastoMensal(d){
+  const meses = [...new Set(d.map(r=>r.mes).filter(Boolean))].sort();
+  if(!meses.length) return '<p style="font-size:11px;color:#aaa">Sem dados mensais</p>';
+  const gastoM = meses.map(m=>d.filter(r=>r.mes===m).reduce((s,r)=>s+r.valor,0));
+  const maxG = Math.max(...gastoM)||1;
+
+  const W=780, H=130, padL=62, padR=16, padT=28, padB=28;
+  const chartW = W-padL-padR;
+  const chartH = H-padT-padB;
+  const bw = Math.min(Math.floor(chartW/meses.length)-6, 52);
+  const gap = (chartW - bw*meses.length)/(meses.length+1);
+
+  // Y axis lines
+  const yTicks = 4;
+  let yLines = '';
+  for(let i=0;i<=yTicks;i++){
+    const y = padT + chartH - (i/yTicks)*chartH;
+    const val = (maxG*i/yTicks);
+    const label = val>=1000000 ? 'R$'+(val/1000000).toFixed(1)+'M' : val>=1000 ? 'R$'+(val/1000).toFixed(0)+'k' : 'R$'+val.toFixed(0);
+    yLines += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#eee" stroke-width="1"/>`;
+    yLines += `<text x="${padL-4}" y="${y+4}" text-anchor="end" font-size="8" fill="#aaa">${label}</text>`;
+  }
+
+  // Bars + labels + x axis
+  let bars='', labels='', xLabels='', linePoints='';
+  meses.forEach((m,i)=>{
+    const x = padL + gap + i*(bw+gap);
+    const bh = Math.max((gastoM[i]/maxG)*chartH, 2);
+    const y = padT + chartH - bh;
+    const cx = x + bw/2;
+    const cy = padT + chartH - (gastoM[i]/maxG)*chartH;
+
+    bars += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" rx="3" fill="#1A56A044" stroke="#1A56A0" stroke-width="1"/>`;
+
+    // value label on top of bar
+    const valLabel = gastoM[i]>=1000000 ? 'R$'+(gastoM[i]/1000000).toFixed(2)+'M' : gastoM[i]>=1000 ? 'R$'+(gastoM[i]/1000).toFixed(0)+'k' : 'R$'+gastoM[i].toFixed(0);
+    labels += `<text x="${cx.toFixed(1)}" y="${(y-4).toFixed(1)}" text-anchor="middle" font-size="8" font-weight="700" fill="#0F3A73">${valLabel}</text>`;
+
+    xLabels += `<text x="${cx.toFixed(1)}" y="${(padT+chartH+14).toFixed(1)}" text-anchor="middle" font-size="8" fill="#8A96A8">${m}</text>`;
+    linePoints += `${cx.toFixed(1)},${cy.toFixed(1)} `;
+  });
+
+  // trend line
+  const trendLine = meses.length>1 ? `<polyline points="${linePoints.trim()}" fill="none" stroke="#D94040" stroke-width="2" stroke-linejoin="round"/>
+    ${meses.map((m,i)=>{
+      const cx=padL+gap+i*(bw+gap)+bw/2;
+      const cy=padT+chartH-(gastoM[i]/maxG)*chartH;
+      return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3" fill="#D94040"/>`;
+    }).join('')}` : '';
+
+  return `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block">
+    ${yLines}
+    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="#ddd" stroke-width="1"/>
+    ${bars}${trendLine}${labels}${xLabels}
+  </svg>`;
+}
+
 function gerarPDF(){
   if(!raw.length){alert('Importe uma planilha antes de gerar o relatório.');return;}
   const d = filtered();
@@ -692,15 +749,17 @@ function gerarPDF(){
   const bar=(val,max,color)=>`<div style="height:6px;background:#eee;border-radius:3px;overflow:hidden;flex:1"><div style="height:100%;width:${Math.round(val*100/max)}%;background:${color};border-radius:3px"></div></div>`;
   const cur=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
 
+  const svgGastoMensal = buildSVGGastoMensal(d);
+
   const html = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
 <title>Relatório de Combustível</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#0F1B2D;font-size:12px}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#0F1B2D;font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   @page{size:A4 landscape;margin:16mm 14mm}
   @media print{
     .page-break{page-break-before:always}
-    body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   }
   .page{width:100%;padding:0;background:#fff}
   /* HEADER */
@@ -784,6 +843,9 @@ function gerarPDF(){
     <div class="al warn"><div><div class="al-lbl">Em alerta</div><div class="al-val">${warns.toLocaleString('pt-BR')}</div><div class="al-sub">km/L entre 6,0 e 8,0</div></div></div>
     <div class="al ok"><div><div class="al-lbl">Normais</div><div class="al-val">${(d.length-crits-warns).toLocaleString('pt-BR')}</div><div class="al-sub">km/L acima de 8,0</div></div></div>
   </div>
+
+  <div class="sec-title" style="margin-top:14px">Evolução do gasto mensal (R$)</div>
+  <div style="margin-bottom:14px">${svgGastoMensal}</div>
 
   <div class="sec-title">Gasto por filial</div>
   <table class="ftable">
