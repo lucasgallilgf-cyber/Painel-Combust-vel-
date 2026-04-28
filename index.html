@@ -204,28 +204,32 @@ function mapRow(r){
   const odo    = getNum('ODOMETRO','HORIMETRO');
   const vlitro = getNum('VL/LITRO','VLLITRO','VL LITRO');
 
-  // DATA — suporta: "02/01/2026 07:00:28", "2026-01-02", número serial do Excel
-  const dataRaw = get('DATA TRANSACAO','DATA_TRANSACAO','DATA');
+  // DATA — lê valor bruto (número serial ou string)
+  const dataKey = keys.find(k=>k.trim().toUpperCase().replace(/[^A-Z]/g,'').includes('DATATRANSACAO')||k.trim().toUpperCase().replace(/[^A-Z]/g,'')==='DATA');
   let dt='—', mes='—';
-  if(dataRaw){
-    const s = dataRaw.toString().trim();
-    let dia, mês, ano;
-    if(/^\d{5,}$/.test(s)){
-      // número serial do Excel (ex: 45800)
-      const d = new Date(Math.round((parseFloat(s)-25569)*86400*1000));
-      dia=d.getUTCDate(); mês=d.getUTCMonth()+1; ano=d.getUTCFullYear();
-    } else if(s.includes('/')){
-      // DD/MM/YYYY ou DD/MM/YYYY HH:MM:SS
-      const p = s.split(' ')[0].split('/');
-      dia=parseInt(p[0]); mês=parseInt(p[1]); ano=parseInt(p[2]);
-    } else if(s.includes('-')){
-      // YYYY-MM-DD
-      const p = s.split(' ')[0].split('-');
-      ano=parseInt(p[0]); mês=parseInt(p[1]); dia=parseInt(p[2]);
+  if(dataKey){
+    const rv = r[dataKey];
+    let dia, m_, ano;
+    if(typeof rv === 'number' && rv > 1000){
+      // rv pode ser 46024.29741 (decimal = hora) — usa só a parte inteira
+      const epoch = new Date(Date.UTC(1899,11,30) + Math.floor(rv)*86400000);
+      dia=epoch.getUTCDate(); m_=epoch.getUTCMonth()+1; ano=epoch.getUTCFullYear();
+    } else {
+      const s = String(rv??'').trim();
+      if(s.includes('/')){
+        const p=s.split(' ')[0].split('/');
+        dia=parseInt(p[0]); m_=parseInt(p[1]); ano=parseInt(p[2]);
+      } else if(s.includes('-')){
+        const p=s.split(' ')[0].split('-');
+        ano=parseInt(p[0]); m_=parseInt(p[1]); dia=parseInt(p[2]);
+      } else if(/^\d{5}$/.test(s)){
+        const epoch=new Date(Date.UTC(1899,11,30)+parseInt(s)*86400000);
+        dia=epoch.getUTCDate(); m_=epoch.getUTCMonth()+1; ano=epoch.getUTCFullYear();
+      }
     }
-    if(dia&&mês&&ano&&ano>2000){
-      dt = `${String(dia).padStart(2,'0')}/${String(mês).padStart(2,'0')}/${ano}`;
-      mes = `${String(mês).padStart(2,'0')}/${ano}`;
+    if(dia&&m_&&ano&&ano>2000){
+      dt=`${String(dia).padStart(2,'0')}/${String(m_).padStart(2,'0')}/${ano}`;
+      mes=`${String(m_).padStart(2,'0')}/${ano}`;
     }
   }
 
@@ -590,7 +594,10 @@ function processFile(file){
       const ws=wb.Sheets[wb.SheetNames[0]];
       const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
       if(!rows.length){alert('Planilha vazia.');return;}
+      console.log('Colunas detectadas:', Object.keys(rows[0]));
+      console.log('Primeira linha:', rows[0]);
       raw=rows.map(mapRow).filter(r=>(r.valor>0||r.litros>0) && r.placa && r.placa!=='—' && r.placa.length>=4);
+      console.log('Primeira linha processada:', raw[0]);
       if(!raw.length){alert('Nenhum registro válido encontrado. Verifique se a coluna VALOR EMISSAO e LITROS estão preenchidas.');return;}
       document.getElementById('srcLabel').textContent=file.name+' · '+raw.length.toLocaleString('pt-BR')+' registros';
       document.getElementById('upZone').classList.remove('show');
