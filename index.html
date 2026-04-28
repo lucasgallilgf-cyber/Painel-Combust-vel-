@@ -195,8 +195,14 @@ function mapRow(r){
     return k?String(r[k]??'').trim():'';
   };
   const getNum=(...terms)=>{
-    const v=get(...terms);
-    return parseFloat(v.replace(/[R$\s]/g,'').replace(/\./g,'').replace(',','.'))||0;
+    const k=keys.find(k=>terms.some(t=>k.trim().toUpperCase().includes(t.toUpperCase())));
+    if(!k) return 0;
+    const rv = r[k];
+    // se já é número, usa direto
+    if(typeof rv === 'number') return rv;
+    // string: remove R$, espaços, pontos de milhar, troca vírgula por ponto
+    const s = String(rv).replace(/R\$\s*/g,'').replace(/\s/g,'').replace(/\./g,'').replace(',','.');
+    return parseFloat(s)||0;
   };
 
   const valor  = getNum('VALOR EMISSAO','VALOR_EMISSAO','EMISSAO');
@@ -611,6 +617,8 @@ function processFile(file){
       console.log('Primeira linha:', rows[0]);
       raw=rows.map(mapRow).filter(r=>(r.valor>0||r.litros>0) && r.placa && r.placa!=='—' && r.placa.length>=4);
       console.log('Primeira linha processada:', raw[0]);
+      console.log('5 primeiros valores:', raw.slice(0,5).map(r=>r.valor));
+      console.log('Soma total:', raw.reduce((s,r)=>s+r.valor,0).toFixed(2));
       if(!raw.length){alert('Nenhum registro válido encontrado. Verifique se a coluna VALOR EMISSAO e LITROS estão preenchidas.');return;}
       document.getElementById('srcLabel').textContent=file.name+' · '+raw.length.toLocaleString('pt-BR')+' registros';
       document.getElementById('upZone').classList.remove('show');
