@@ -472,9 +472,12 @@ function renderCharts(d){
   const fh=Math.max(filiais.length*36+60,120);
   document.getElementById('filialChartWrap').style.height=fh+'px';
   dc('cFilial');
+  const filialSelecionada = document.getElementById('fFilial').value;
   charts['cFilial']=new Chart(document.getElementById('cFilial'),{
     type:'bar',
-    data:{labels:filiais.map(f=>f[0]),datasets:[{data:filiais.map(f=>Math.round(f[1])),backgroundColor:'#1A56A044',borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4,hoverBackgroundColor:'#1A56A0'}]},
+    data:{labels:filiais.map(f=>f[0]),datasets:[{data:filiais.map(f=>Math.round(f[1])),
+      backgroundColor:filiais.map(f=>f[0]===filialSelecionada?'#1A56A0':'#1A56A044'),
+      borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4,hoverBackgroundColor:'#1A56A0'}]},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` R$ ${c.parsed.toLocaleString('pt-BR',{maximumFractionDigits:0})}`}}},
       scales:{x:{ticks:{font:{size:10},callback:v=>'R$'+(v/1000).toFixed(0)+'k'},grid:{color:'rgba(0,0,0,0.04)'}},
@@ -483,7 +486,17 @@ function renderCharts(d){
         if(!els.length)return;
         const idx=els[0].index;
         const filialNome=filiais[idx][0];
-        openDrill(filialNome,d);
+        // seta o filtro de filial e re-renderiza tudo
+        const sel=document.getElementById('fFilial');
+        if(sel.value===filialNome){
+          // segundo clique na mesma filial = limpa filtro
+          sel.value='';
+          closeDrill();
+        } else {
+          sel.value=filialNome;
+          openDrill(filialNome, filtered());
+        }
+        render();
       }
     }
   });
