@@ -204,15 +204,28 @@ function mapRow(r){
   const odo    = getNum('ODOMETRO','HORIMETRO');
   const vlitro = getNum('VL/LITRO','VLLITRO','VL LITRO');
 
+  // DATA — suporta: "02/01/2026 07:00:28", "2026-01-02", número serial do Excel
   const dataRaw = get('DATA TRANSACAO','DATA_TRANSACAO','DATA');
   let dt='—', mes='—';
   if(dataRaw){
-    // tenta parse — formato pode ser "02/01/2026 07:00:28"
-    const parts = dataRaw.split(' ')[0]; // pega só a data sem hora
-    const [d,m,y] = parts.includes('/') ? parts.split('/') : parts.split('-').reverse();
-    if(d&&m&&y){
-      dt = `${d.padStart(2,'0')}/${m.padStart(2,'0')}/${y}`;
-      mes = `${m.padStart(2,'0')}/${y}`;
+    const s = dataRaw.toString().trim();
+    let dia, mês, ano;
+    if(/^\d{5,}$/.test(s)){
+      // número serial do Excel (ex: 45800)
+      const d = new Date(Math.round((parseFloat(s)-25569)*86400*1000));
+      dia=d.getUTCDate(); mês=d.getUTCMonth()+1; ano=d.getUTCFullYear();
+    } else if(s.includes('/')){
+      // DD/MM/YYYY ou DD/MM/YYYY HH:MM:SS
+      const p = s.split(' ')[0].split('/');
+      dia=parseInt(p[0]); mês=parseInt(p[1]); ano=parseInt(p[2]);
+    } else if(s.includes('-')){
+      // YYYY-MM-DD
+      const p = s.split(' ')[0].split('-');
+      ano=parseInt(p[0]); mês=parseInt(p[1]); dia=parseInt(p[2]);
+    }
+    if(dia&&mês&&ano&&ano>2000){
+      dt = `${String(dia).padStart(2,'0')}/${String(mês).padStart(2,'0')}/${ano}`;
+      mes = `${String(mês).padStart(2,'0')}/${ano}`;
     }
   }
 
@@ -577,7 +590,7 @@ function processFile(file){
       const ws=wb.Sheets[wb.SheetNames[0]];
       const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
       if(!rows.length){alert('Planilha vazia.');return;}
-      raw=rows.map(mapRow).filter(r=>r.valor>0||r.litros>0);
+      raw=rows.map(mapRow).filter(r=>(r.valor>0||r.litros>0) && r.placa && r.placa!=='—' && r.placa.length>=4);
       if(!raw.length){alert('Nenhum registro válido encontrado. Verifique se a coluna VALOR EMISSAO e LITROS estão preenchidas.');return;}
       document.getElementById('srcLabel').textContent=file.name+' · '+raw.length.toLocaleString('pt-BR')+' registros';
       document.getElementById('upZone').classList.remove('show');
