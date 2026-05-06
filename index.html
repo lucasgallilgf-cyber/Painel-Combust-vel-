@@ -122,9 +122,148 @@ tr:hover td{background:var(--blue-light)}
 .footer{margin-top:28px;padding:14px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:11px;color:var(--text3);flex-wrap:wrap;gap:8px}
 .hint{text-align:center;padding:40px 20px;color:var(--text3);font-size:13px;border:2px dashed var(--border);border-radius:12px}
 .hint strong{display:block;font-size:15px;color:var(--text2);margin-bottom:8px}
+
+/* ── LOGIN ───────────────────────────────────────────────────── */
+.login-screen{position:fixed;inset:0;background:var(--blue-dark);display:flex;align-items:center;justify-content:center;z-index:9999}
+.login-box{background:#fff;border-radius:16px;padding:40px 44px;width:380px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.login-logo{width:56px;height:56px;background:var(--blue-dark);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.login-logo svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.login-title{font-size:20px;font-weight:700;text-align:center;color:var(--text);margin-bottom:4px}
+.login-sub{font-size:12px;color:var(--text3);text-align:center;margin-bottom:28px}
+.login-field{margin-bottom:16px}
+.login-field label{display:block;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.login-field input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;color:var(--text);transition:border-color .2s}
+.login-field input:focus{outline:none;border-color:var(--blue)}
+.login-btn{width:100%;padding:11px;background:var(--blue-dark);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;margin-top:4px}
+.login-btn:hover{background:var(--blue)}
+.login-err{font-size:12px;color:var(--red);text-align:center;margin-top:10px;display:none}
+.login-err.show{display:block}
+
+/* ── USER PANEL ──────────────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;display:flex;align-items:center;justify-content:center}
+.modal-overlay.hide{display:none}
+.modal{background:#fff;border-radius:14px;padding:28px 32px;width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal h2{font-size:16px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.modal h2 svg{width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mfield{margin-bottom:14px}
+.mfield label{display:block;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.mfield input,.mfield select{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;color:var(--text)}
+.mfield input:focus,.mfield select:focus{outline:none;border-color:var(--blue)}
+.mfield small{font-size:10px;color:var(--text3);display:block;margin-top:3px}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.mbtn{font-family:inherit;font-size:13px;font-weight:500;padding:8px 18px;border-radius:7px;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text)}
+.mbtn:hover{background:var(--bg)}
+.mbtn.primary{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark)}
+.mbtn.primary:hover{background:var(--blue)}
+.mbtn.danger{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* USER TABLE */
+.usr-table{width:100%;border-collapse:collapse;font-size:13px}
+.usr-table th{padding:8px 10px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border)}
+.usr-table td{padding:10px 10px;border-bottom:1px solid var(--border)}
+.usr-table tr:last-child td{border:none}
+.usr-table tr:hover td{background:var(--bg)}
+.badge-admin{background:#FEF7EC;color:#854F0B;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.badge-user{background:var(--blue-light);color:var(--blue-dark);padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.icon-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.icon-btn:hover{background:var(--bg)}
+.icon-btn svg{width:13px;height:13px;stroke:var(--text2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn.del svg{stroke:var(--red)}
+.filial-tag{display:inline-block;background:var(--blue-light);color:var(--blue-dark);padding:1px 7px;border-radius:4px;font-size:10px;margin:1px;font-weight:500}
+.user-info-bar{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border-radius:7px;padding:5px 12px}
+.user-info-bar span{font-size:12px;color:rgba(255,255,255,.8)}
+.user-info-bar strong{font-size:12px;color:#fff}
 </style>
 </head>
 <body>
+
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 24 24"><path d="M3 20h18M7 20V8l5-4 5 4v12M10 20v-5h4v5"/></svg>
+    </div>
+    <div class="login-title">Painel de Combustível</div>
+    <div class="login-sub">Entre com suas credenciais para acessar</div>
+    <div class="login-field">
+      <label>E-mail</label>
+      <input type="email" id="loginEmail" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="login-field">
+      <label>Senha</label>
+      <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Entrar</button>
+    <div class="login-err" id="loginErr">E-mail ou senha incorretos</div>
+  </div>
+</div>
+
+<!-- MODAL GERENCIAR USUÁRIOS -->
+<div class="modal-overlay hide" id="usersModal">
+  <div class="modal" style="width:680px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h2 style="margin:0">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Gerenciar Usuários
+      </h2>
+      <button class="mbtn" onclick="abrirNovoUsuario()" style="background:var(--blue-dark);color:#fff;border-color:var(--blue-dark);font-weight:600">+ Novo Usuário</button>
+    </div>
+    <table class="usr-table">
+      <thead><tr><th>Nome</th><th>E-mail</th><th>Tipo</th><th>Filiais</th><th>Ações</th></tr></thead>
+      <tbody id="usersTableBody"></tbody>
+    </table>
+    <div style="margin-top:20px;text-align:right">
+      <button class="mbtn" onclick="fecharModal('usersModal')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOVO / EDITAR USUÁRIO -->
+<div class="modal-overlay hide" id="userFormModal">
+  <div class="modal">
+    <h2>
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span id="userFormTitle">Novo Usuário</span>
+    </h2>
+    <div class="mfield"><label>Nome completo</label><input type="text" id="ufNome" placeholder="Ex: João Silva"></div>
+    <div class="mfield"><label>E-mail</label><input type="email" id="ufEmail" placeholder="joao@empresa.com"><small>Usado para login</small></div>
+    <div class="mfield"><label>Tipo de acesso</label>
+      <select id="ufTipo" onchange="toggleFilialSelect()">
+        <option value="admin">👑 Admin — acesso total</option>
+        <option value="user">👤 Usuário — filiais específicas</option>
+      </select>
+    </div>
+    <div class="mfield" id="ufFilialField" style="display:none">
+      <label>Filiais permitidas</label>
+      <div id="ufFiliaisCheck" style="max-height:160px;overflow-y:auto;border:1.5px solid var(--border);border-radius:7px;padding:8px 12px;display:flex;flex-direction:column;gap:6px"></div>
+      <small>Marque todas as filiais que este usuário pode visualizar</small>
+    </div>
+    <div class="mfield"><label>Senha <span id="senhaOpcional" style="font-weight:400;text-transform:none;color:var(--text3)">(deixe em branco para manter)</span></label>
+      <input type="password" id="ufSenha" placeholder="Mínimo 6 caracteres">
+    </div>
+    <div class="modal-actions">
+      <button class="mbtn" onclick="fecharModal('userFormModal')">Cancelar</button>
+      <button class="mbtn primary" onclick="salvarUsuario()">Salvar usuário</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TROCAR SENHA -->
+<div class="modal-overlay hide" id="senhaModal">
+  <div class="modal" style="width:380px">
+    <h2>
+      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Trocar Senha
+    </h2>
+    <div class="mfield"><label>Nova senha</label><input type="password" id="novaSenha1" placeholder="Mínimo 6 caracteres"></div>
+    <div class="mfield"><label>Confirmar nova senha</label><input type="password" id="novaSenha2" placeholder="Repita a senha"></div>
+    <div class="modal-actions">
+      <button class="mbtn" onclick="fecharModal('senhaModal')">Cancelar</button>
+      <button class="mbtn primary" onclick="salvarSenha()">Salvar senha</button>
+    </div>
+  </div>
+</div>
 
 <div class="topbar">
   <div class="brand">
@@ -137,6 +276,19 @@ tr:hover td{background:var(--blue-light)}
     </div>
   </div>
   <div class="tbactions">
+    <div class="user-info-bar" id="userInfoBar">
+      <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Olá, <strong id="userNameBar">—</strong></span>
+      <span id="userTypeBar" style="font-size:10px;opacity:.6"></span>
+    </div>
+    <button class="tbtn" id="btnGerenciar" onclick="abrirGerenciarUsuarios()" style="display:none">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      Usuários
+    </button>
+    <button class="tbtn" onclick="doLogout()">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Sair
+    </button>
     <button class="tbtn" onclick="toggleUpload()">
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       Importar planilha
@@ -942,6 +1094,244 @@ function gerarPDF(){
   w.document.close();
   w.onload = ()=>{ w.focus(); w.print(); };
 }
+
+// ══════════════════════════════════════════════════════════════
+// AUTH & USER MANAGEMENT
+// ══════════════════════════════════════════════════════════════
+
+const STORAGE_KEY = 'fuel_users_v1';
+const SESSION_KEY = 'fuel_session_v1';
+
+function getUsers(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]'); }
+  catch(e){ return []; }
+}
+function saveUsers(u){ localStorage.setItem(STORAGE_KEY, JSON.stringify(u)); }
+function getSession(){ try{ return JSON.parse(sessionStorage.getItem(SESSION_KEY)||'null'); }catch(e){return null;} }
+function saveSession(u){ sessionStorage.setItem(SESSION_KEY, JSON.stringify(u)); }
+function clearSession(){ sessionStorage.removeItem(SESSION_KEY); }
+
+function initUsers(){
+  if(!getUsers().length){
+    saveUsers([{
+      id:'1', nome:'Administrador', email:'admin@combustivel.com',
+      senha: btoa('admin123'), tipo:'admin', filiais:[]
+    }]);
+  }
+}
+
+function hashSenha(s){ return btoa(s); }
+
+function doLogin(){
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const senha = document.getElementById('loginPass').value;
+  const err = document.getElementById('loginErr');
+  const users = getUsers();
+  const user = users.find(u=>u.email.toLowerCase()===email && u.senha===hashSenha(senha));
+  if(!user){ err.classList.add('show'); return; }
+  err.classList.remove('show');
+  saveSession(user);
+  applySession(user);
+}
+
+function applySession(user){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('userNameBar').textContent = user.nome;
+  document.getElementById('userTypeBar').textContent = user.tipo==='admin' ? '👑 Admin' : '👤 Usuário';
+  if(user.tipo==='admin'){
+    document.getElementById('btnGerenciar').style.display='';
+  }
+  // se usuário tem filiais restritas, pre-seta o filtro
+  if(user.tipo!=='admin' && user.filiais && user.filiais.length>0){
+    // será aplicado após dados carregados
+    window._userFiliais = user.filiais;
+  } else {
+    window._userFiliais = null;
+  }
+}
+
+function doLogout(){
+  if(!confirm('Deseja sair?')) return;
+  clearSession();
+  location.reload();
+}
+
+// Restrição de filial para usuários comuns
+const _origPopulateSelects = populateSelects;
+function populateSelects(){
+  _origPopulateSelects();
+  applyUserFilialRestriction();
+}
+
+function applyUserFilialRestriction(){
+  if(!window._userFiliais) return;
+  const sel = document.getElementById('fFilial');
+  // remove opções que não pertencem ao usuário
+  Array.from(sel.options).forEach(o=>{
+    if(o.value && !window._userFiliais.includes(o.value)){
+      o.remove();
+    }
+  });
+  // bloqueia o select para o usuário não poder mudar
+  if(window._userFiliais.length===1){
+    sel.value = window._userFiliais[0];
+    sel.disabled = true;
+    render();
+  }
+}
+
+// ── MODAIS ────────────────────────────────────────────────────
+function fecharModal(id){ document.getElementById(id).classList.add('hide'); }
+function abrirModal(id){ document.getElementById(id).classList.remove('hide'); }
+
+let _editingUserId = null;
+let _senhaTargetId = null;
+
+function abrirGerenciarUsuarios(){
+  renderUsersTable();
+  abrirModal('usersModal');
+}
+
+function renderUsersTable(){
+  const users = getUsers();
+  document.getElementById('usersTableBody').innerHTML = users.map(u=>`
+    <tr>
+      <td style="font-weight:600">${u.nome}</td>
+      <td style="color:var(--text2)">${u.email}</td>
+      <td>${u.tipo==='admin'
+        ? '<span class="badge-admin">👑 Admin</span>'
+        : '<span class="badge-user">👤 Usuário</span>'}</td>
+      <td>${u.tipo==='admin'
+        ? '<span style="color:var(--text3);font-size:12px">todas</span>'
+        : (u.filiais||[]).map(f=>`<span class="filial-tag">${f}</span>`).join('') || '<span style="color:var(--text3);font-size:11px">nenhuma</span>'}</td>
+      <td>
+        <div style="display:flex;gap:5px">
+          <button class="icon-btn" onclick="editarUsuario('${u.id}')" title="Editar">
+            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="icon-btn" onclick="abrirTrocarSenha('${u.id}')" title="Trocar senha">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </button>
+          ${u.id!=='1'?`<button class="icon-btn del" onclick="excluirUsuario('${u.id}')" title="Excluir">
+            <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          </button>`:''}
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function abrirNovoUsuario(){
+  _editingUserId = null;
+  document.getElementById('userFormTitle').textContent = 'Novo Usuário';
+  document.getElementById('ufNome').value='';
+  document.getElementById('ufEmail').value='';
+  document.getElementById('ufTipo').value='user';
+  document.getElementById('ufSenha').value='';
+  document.getElementById('senhaOpcional').style.display='none';
+  buildFiliaisCheck([]);
+  toggleFilialSelect();
+  abrirModal('userFormModal');
+}
+
+function editarUsuario(id){
+  const u = getUsers().find(u=>u.id===id);
+  if(!u) return;
+  _editingUserId = id;
+  document.getElementById('userFormTitle').textContent = 'Editar Usuário';
+  document.getElementById('ufNome').value = u.nome;
+  document.getElementById('ufEmail').value = u.email;
+  document.getElementById('ufTipo').value = u.tipo;
+  document.getElementById('ufSenha').value = '';
+  document.getElementById('senhaOpcional').style.display='';
+  buildFiliaisCheck(u.filiais||[]);
+  toggleFilialSelect();
+  abrirModal('userFormModal');
+}
+
+function buildFiliaisCheck(selected){
+  const filiais = [...new Set(raw.map(r=>r.filial).filter(Boolean))].sort();
+  const wrap = document.getElementById('ufFiliaisCheck');
+  if(!filiais.length){
+    wrap.innerHTML='<span style="font-size:12px;color:var(--text3)">Importe uma planilha primeiro para listar as filiais</span>';
+    return;
+  }
+  wrap.innerHTML = filiais.map(f=>`
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
+      <input type="checkbox" value="${f}" ${selected.includes(f)?'checked':''} style="width:14px;height:14px;accent-color:var(--blue)">
+      ${f}
+    </label>`).join('');
+}
+
+function toggleFilialSelect(){
+  const tipo = document.getElementById('ufTipo').value;
+  document.getElementById('ufFilialField').style.display = tipo==='user' ? '' : 'none';
+}
+
+function salvarUsuario(){
+  const nome = document.getElementById('ufNome').value.trim();
+  const email = document.getElementById('ufEmail').value.trim().toLowerCase();
+  const tipo = document.getElementById('ufTipo').value;
+  const senha = document.getElementById('ufSenha').value;
+  const filiais = tipo==='user'
+    ? Array.from(document.querySelectorAll('#ufFiliaisCheck input:checked')).map(i=>i.value)
+    : [];
+
+  if(!nome||!email){ alert('Preencha nome e e-mail.'); return; }
+  if(!_editingUserId && !senha){ alert('Informe uma senha para o novo usuário.'); return; }
+  if(senha && senha.length<6){ alert('A senha deve ter no mínimo 6 caracteres.'); return; }
+
+  const users = getUsers();
+  const emailExiste = users.find(u=>u.email===email && u.id!==_editingUserId);
+  if(emailExiste){ alert('Este e-mail já está cadastrado.'); return; }
+
+  if(_editingUserId){
+    const idx = users.findIndex(u=>u.id===_editingUserId);
+    users[idx] = { ...users[idx], nome, email, tipo, filiais, ...(senha?{senha:hashSenha(senha)}:{}) };
+  } else {
+    users.push({ id: Date.now().toString(), nome, email, tipo, filiais, senha: hashSenha(senha) });
+  }
+  saveUsers(users);
+  fecharModal('userFormModal');
+  renderUsersTable();
+  alert(_editingUserId ? 'Usuário atualizado!' : 'Usuário criado com sucesso!');
+}
+
+function abrirTrocarSenha(id){
+  _senhaTargetId = id;
+  document.getElementById('novaSenha1').value='';
+  document.getElementById('novaSenha2').value='';
+  abrirModal('senhaModal');
+}
+
+function salvarSenha(){
+  const s1 = document.getElementById('novaSenha1').value;
+  const s2 = document.getElementById('novaSenha2').value;
+  if(!s1||s1.length<6){ alert('Senha deve ter no mínimo 6 caracteres.'); return; }
+  if(s1!==s2){ alert('As senhas não coincidem.'); return; }
+  const users = getUsers();
+  const idx = users.findIndex(u=>u.id===_senhaTargetId);
+  if(idx<0) return;
+  users[idx].senha = hashSenha(s1);
+  saveUsers(users);
+  fecharModal('senhaModal');
+  alert('Senha alterada com sucesso!');
+}
+
+function excluirUsuario(id){
+  if(!confirm('Excluir este usuário?')) return;
+  saveUsers(getUsers().filter(u=>u.id!==id));
+  renderUsersTable();
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+initUsers();
+const _session = getSession();
+if(_session){
+  applySession(_session);
+} else {
+  document.getElementById('loginScreen').style.display='flex';
+}
+
 </script>
 </body>
 </html>
