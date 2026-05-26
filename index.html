@@ -664,7 +664,7 @@ function processFile(file){
       console.log('Soma total:', raw.reduce((s,r)=>s+r.valor,0).toFixed(2));
       if(!raw.length){alert('Nenhum registro válido encontrado. Verifique se a coluna VALOR EMISSAO e LITROS estão preenchidas.');return;}
       document.getElementById('srcLabel').textContent=file.name+' · '+raw.length.toLocaleString('pt-BR')+' registros';
-      document.getElementById('upZone').classList.remove('show');
+      const upZone=document.getElementById('upZone'); if(upZone) upZone.classList.remove('show');
       populateSelects();render();
     }catch(err){
       console.error(err);
