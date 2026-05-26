@@ -169,15 +169,15 @@ tr:hover td{background:var(--blue-light)}
   </button>
 </div>
 
-<div class="upload-overlay" id="upZone"
-  onclick="document.getElementById('fileInput').click()"
+<label for="fileInput" class="upload-overlay" id="upZone"
   ondragover="event.preventDefault()"
-  ondrop="drop(event)">
+  ondrop="drop(event)"
+  style="cursor:pointer">
   <strong>Clique ou arraste a planilha aqui</strong>
   <p>Aceita <code>.xlsx</code>, <code>.xls</code> ou <code>.csv</code><br>
   Colunas usadas: <code>VALOR EMISSAO</code> · <code>LITROS</code> · <code>NOME REDUZIDO</code> · <code>PLACA</code> · <code>NOME MOTORISTA</code> · <code>TIPO COMBUSTIVEL</code> · <code>DATA TRANSACAO</code> · <code>TIPO FROTA</code> · <code>ODOMETRO</code></p>
-</div>
-<input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="loadFile(event)">
+</label>
+<input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="loadFile(event)" style="display:none">
 <input type="file" id="logoInput" accept="image/*" onchange="loadLogo(event)">
 
 <div class="page" id="mainPage">
@@ -605,7 +605,7 @@ function renderTable(d){
 }
 
 // ── UPLOAD ─────────────────────────────────────────────────────────────────────
-function toggleUpload(){document.getElementById('upZone').classList.toggle('show');}
+function toggleUpload(){const el=document.getElementById('upZone');if(el)el.classList.toggle('show');}
 function drop(e){e.preventDefault();const f=e.dataTransfer.files[0];if(f)processFile(f);}
 function loadFile(e){const f=e.target.files[0];if(f)processFile(f);}
 
