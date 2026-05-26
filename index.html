@@ -216,15 +216,17 @@ tr:hover td{background:var(--blue-light)}
 </div>
 
 <div class="upload-overlay" id="upZone"
-  onclick="document.getElementById('fileInput').click()"
-  ondragover="event.preventDefault()"
+  ondragover="event.preventDefault();this.style.borderColor='var(--blue-dark)'"
+  ondragleave="this.style.borderColor=''"
   ondrop="drop(event)">
-  <strong>Clique ou arraste a planilha aqui</strong>
-  <p>Aceita <code>.xlsx</code>, <code>.xls</code> ou <code>.csv</code><br>
-  Colunas usadas: <code>VALOR EMISSAO</code> · <code>LITROS</code> · <code>NOME REDUZIDO</code> · <code>PLACA</code> · <code>NOME MOTORISTA</code> · <code>TIPO COMBUSTIVEL</code> · <code>DATA TRANSACAO</code> · <code>TIPO FROTA</code> · <code>ODOMETRO</code></p>
+  <label for="fileInput" style="display:block;cursor:pointer;width:100%">
+    <strong>Clique ou arraste a planilha aqui</strong>
+    <p>Aceita <code>.xlsx</code>, <code>.xls</code> ou <code>.csv</code><br>
+    Colunas: <code>VALOR EMISSAO</code> · <code>LITROS</code> · <code>NOME REDUZIDO</code> · <code>PLACA</code> · <code>NOME MOTORISTA</code> · <code>TIPO COMBUSTIVEL</code> · <code>DATA TRANSACAO</code> · <code>TIPO FROTA</code> · <code>ODOMETRO</code></p>
+  </label>
 </div>
-<input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="loadFile(event)">
-<input type="file" id="logoInput" accept="image/*" onchange="loadLogo(event)">
+<input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="loadFile(event)" style="display:none">
+<input type="file" id="logoInput" accept="image/*" onchange="loadLogo(event)" style="display:none">
 
 <div class="page" id="mainPage">
   <div class="hint" id="hint">
