@@ -8,46 +8,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#1A56A0;--blue-dark:#0F3A73;--blue-light:#E8F0FB;--blue-mid:#2E6FC4;
-  --text:#0F1B2D;--text2:#4A5568;--text3:#8A96A8;
-  --bg:#F0F4FA;--surface:#fff;--border:#DDE4F0;
-  --red:#D94040;--amber:#E07B00;--green:#1A7A4A;
-  --red-bg:#FEF0F0;--amber-bg:#FEF7EC;--green-bg:#EDFAF3;
-}
+:root{--blue:#1A56A0;--blue-dark:#0F3A73;--blue-light:#E8F0FB;--text:#0F1B2D;--text2:#4A5568;--text3:#8A96A8;--bg:#F0F4FA;--surface:#fff;--border:#DDE4F0;--red:#D94040;--amber:#E07B00;--green:#1A7A4A}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 .topbar{background:var(--blue-dark);padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
 .brand{display:flex;align-items:center;gap:12px}
-.logo-slot{width:42px;height:42px;border:2px dashed rgba(255,255,255,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
-.logo-slot:hover{border-color:rgba(255,255,255,.6)}
-.logo-slot svg{width:17px;height:17px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.logo-slot img{width:100%;height:100%;object-fit:contain;border-radius:6px}
 .brand-text .name{font-size:15px;font-weight:600;color:#fff}
 .brand-text .src{font-size:11px;color:rgba(255,255,255,.45)}
-.tbactions{display:flex;gap:7px}
 .tbtn{font-family:inherit;font-size:12px;font-weight:500;padding:7px 13px;border:1px solid rgba(255,255,255,.2);border-radius:7px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
 .tbtn:hover{background:rgba(255,255,255,.18)}
-.tbtn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.tbtn.accent{background:var(--blue-mid);border-color:var(--blue-mid)}
-.tbtn.accent:hover{background:#2460AE}
+.tbtn.accent{background:var(--blue-dark);border-color:var(--blue-dark)}
 .subbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
 .fg{display:flex;flex-direction:column;gap:3px}
 .fg label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
 .fg select{font-family:inherit;font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);min-width:130px}
-.fg select:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
 .clrbtn{font-family:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text2);cursor:pointer;display:inline-flex;align-items:center;gap:5px;align-self:flex-end}
-.clrbtn:hover{background:var(--bg)}
-.clrbtn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
-.upload-overlay{display:none;border:2px dashed var(--blue);border-radius:12px;padding:22px 28px;margin:20px 28px 0;cursor:pointer;text-align:center;background:var(--blue-light)}
-.upload-overlay.show{display:block}
-.upload-overlay:hover{background:#dce8f8}
-.upload-overlay strong{font-size:14px;color:var(--blue-dark);display:block;margin-bottom:6px}
-.upload-overlay p{font-size:12px;color:var(--text3);line-height:1.6}
-.upload-overlay code{background:#fff;color:var(--blue-dark);padding:1px 6px;border-radius:3px;font-size:11px}
-#fileInput,#logoInput{display:none}
 .page{max-width:1280px;margin:0 auto;padding:22px 28px}
 .kgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:18px}
-@media(max-width:960px){.kgrid{grid-template-columns:repeat(3,1fr)}}
 .kcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
 .kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue)}
 .kcard.re::before{background:var(--red)}.kcard.am::before{background:var(--amber)}.kcard.gr::before{background:var(--green)}.kcard.pu::before{background:#6B4FBB}
@@ -56,148 +32,65 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .kdelta{font-size:11px;color:var(--text3)}
 .alerts{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:18px}
 .acard{border-radius:10px;padding:13px 16px;border:1px solid transparent;display:flex;align-items:flex-start;gap:12px}
-.acard.crit{background:var(--red-bg);border-color:#F5CACA}
-.acard.warn{background:var(--amber-bg);border-color:#F5DCA0}
-.acard.ok{background:var(--green-bg);border-color:#A8E0C0}
+.acard.crit{background:#FEF0F0;border-color:#F5CACA}
+.acard.warn{background:#FEF7EC;border-color:#F5DCA0}
+.acard.ok{background:#EDFAF3;border-color:#A8E0C0}
 .aicon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .acard.crit .aicon{background:#F5CACA}.acard.warn .aicon{background:#F5DCA0}.acard.ok .aicon{background:#A8E0C0}
-.aicon svg{width:15px;height:15px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.acard.crit .aicon svg{stroke:var(--red)}.acard.warn .aicon svg{stroke:var(--amber)}.acard.ok .aicon svg{stroke:var(--green)}
 .atitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
 .acard.crit .atitle{color:var(--red)}.acard.warn .atitle{color:var(--amber)}.acard.ok .atitle{color:var(--green)}
 .aval{font-size:22px;font-weight:700;line-height:1;margin-bottom:2px}
 .acard.crit .aval{color:var(--red)}.acard.warn .aval{color:var(--amber)}.acard.ok .aval{color:var(--green)}
 .asub{font-size:11px;color:var(--text3);line-height:1.4}
-.crow{display:grid;grid-template-columns:1.8fr 1fr;gap:13px;margin-bottom:13px}
-.crow2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
-@media(max-width:900px){.crow,.crow2{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:13px}
 .card-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px}
 .card-hd .t{font-size:13px;font-weight:700;color:var(--text)}
-.card-hd .badge-blue{font-size:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);padding:2px 8px;border-radius:4px}
 .csub{font-size:11px;color:var(--text3);margin-bottom:13px}
-.leg{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:9px}
-.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
-.ld{width:9px;height:9px;border-radius:2px;flex-shrink:0}
-/* FILIAIS PAINEL */
-.filial-drill{background:var(--blue-light);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:13px;display:none}
-.filial-drill.show{display:block}
-.drill-title{font-size:13px;font-weight:700;color:var(--blue-dark);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
-.drill-close{font-size:11px;color:var(--text3);cursor:pointer;padding:3px 8px;border:1px solid var(--border);border-radius:5px;background:#fff}
-.drill-close:hover{background:var(--bg)}
-.drill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.drill-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px 14px}
-.drill-card .mot{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px}
-.drill-card .val{font-size:14px;font-weight:700;color:var(--blue)}
-.drill-card .sub{font-size:10px;color:var(--text3);margin-top:2px}
-/* TOP BARS */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
 .top-row{display:flex;align-items:center;gap:9px;padding:5px 0;border-bottom:1px solid var(--bg)}
-.top-row:last-child{border:none}
 .top-n{font-size:11px;color:var(--text3);width:18px;text-align:center;flex-shrink:0;font-weight:700}
 .top-lbl{font-size:12px;font-weight:600;min-width:80px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.top-sub{font-size:10px;color:var(--text3);min-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .top-bar-wrap{flex:1;height:5px;background:var(--bg);border-radius:3px;overflow:hidden}
 .top-bar{height:100%;border-radius:3px}
 .top-val{font-size:11px;font-weight:700;min-width:76px;text-align:right;color:var(--text)}
-/* RANK */
-.rank-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bg)}
-.rank-row:last-child{border:none}
-.rn{font-size:11px;color:var(--text3);width:16px;text-align:center;flex-shrink:0;font-weight:700}
-.rlbl{font-size:12px;font-weight:600;min-width:72px;color:var(--text)}
-.rbar-wrap{flex:1;height:5px;background:var(--bg);border-radius:3px;overflow:hidden}
-.rbar{height:100%;border-radius:3px}
-.rval{font-size:11px;font-weight:700;min-width:64px;text-align:right;color:var(--text)}
-/* TABLE */
 .sec-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;flex-wrap:wrap;gap:8px}
 .sec-hd .t{font-size:13px;font-weight:700}.sec-hd .s{font-size:11px;color:var(--text3)}
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 th{padding:8px 11px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);border-bottom:2px solid var(--border);background:var(--bg);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 td{padding:9px 11px;border-bottom:1px solid var(--border);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
-tr:last-child td{border:none}
-tr:hover td{background:var(--blue-light)}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
 .b-ok{background:var(--green-bg);color:var(--green)}.b-warn{background:var(--amber-bg);color:var(--amber)}.b-crit{background:var(--red-bg);color:var(--red)}
 .cost-hi{color:var(--red);font-weight:700}
-.footer{margin-top:28px;padding:14px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:11px;color:var(--text3);flex-wrap:wrap;gap:8px}
 .hint{text-align:center;padding:40px 20px;color:var(--text3);font-size:13px;border:2px dashed var(--border);border-radius:12px}
 .hint strong{display:block;font-size:15px;color:var(--text2);margin-bottom:8px}
-
-/* ── LOGIN ───────────────────────────────────────────────────── */
-.login-screen{position:fixed;inset:0;background:var(--blue-dark);display:flex;align-items:center;justify-content:center;z-index:9999}
-.login-box{background:#fff;border-radius:16px;padding:40px 44px;width:380px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
-.login-logo{width:56px;height:56px;background:var(--blue-dark);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
-.login-logo svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.login-title{font-size:20px;font-weight:700;text-align:center;color:var(--text);margin-bottom:4px}
-.login-sub{font-size:12px;color:var(--text3);text-align:center;margin-bottom:28px}
-.login-field{margin-bottom:16px}
-.login-field label{display:block;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.login-field input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;color:var(--text);transition:border-color .2s}
-.login-field input:focus{outline:none;border-color:var(--blue)}
-.login-btn{width:100%;padding:11px;background:var(--blue-dark);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;margin-top:4px}
-.login-btn:hover{background:var(--blue)}
-.login-err{font-size:12px;color:var(--red);text-align:center;margin-top:10px;display:none}
-.login-err.show{display:block}
-
-/* ── USER PANEL ──────────────────────────────────────────────── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;display:flex;align-items:center;justify-content:center}
-.modal-overlay.hide{display:none}
-.modal{background:#fff;border-radius:14px;padding:28px 32px;width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.modal h2{font-size:16px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:8px}
-.modal h2 svg{width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.mfield{margin-bottom:14px}
-.mfield label{display:block;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
-.mfield input,.mfield select{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;color:var(--text)}
-.mfield input:focus,.mfield select:focus{outline:none;border-color:var(--blue)}
-.mfield small{font-size:10px;color:var(--text3);display:block;margin-top:3px}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
-.mbtn{font-family:inherit;font-size:13px;font-weight:500;padding:8px 18px;border-radius:7px;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text)}
-.mbtn:hover{background:var(--bg)}
-.mbtn.primary{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark)}
-.mbtn.primary:hover{background:var(--blue)}
-.mbtn.danger{background:var(--red);color:#fff;border-color:var(--red)}
-
-/* USER TABLE */
-.usr-table{width:100%;border-collapse:collapse;font-size:13px}
-.usr-table th{padding:8px 10px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border)}
-.usr-table td{padding:10px 10px;border-bottom:1px solid var(--border)}
-.usr-table tr:last-child td{border:none}
-.usr-table tr:hover td{background:var(--bg)}
-.badge-admin{background:#FEF7EC;color:#854F0B;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
-.badge-user{background:var(--blue-light);color:var(--blue-dark);padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
-.icon-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
-.icon-btn:hover{background:var(--bg)}
-.icon-btn svg{width:13px;height:13px;stroke:var(--text2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.icon-btn.del svg{stroke:var(--red)}
-.filial-tag{display:inline-block;background:var(--blue-light);color:var(--blue-dark);padding:1px 7px;border-radius:4px;font-size:10px;margin:1px;font-weight:500}
-
+#fileInput{display:none}
 </style>
 </head>
 <body>
 
-
 <div class="topbar">
   <div class="brand">
-    <div class="logo-slot" id="logoSlot" onclick="document.getElementById('logoInput').click()" title="Clique para adicionar logo">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    <div style="width:42px;height:42px;border:2px dashed rgba(255,255,255,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
     </div>
     <div class="brand-text">
       <div class="name">Painel de Combustível</div>
       <div class="src" id="srcLabel">Nenhuma planilha carregada</div>
     </div>
   </div>
-  <div class="tbactions">
-    <label for="fileInput" class="tbtn" style="cursor:pointer">
-      <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+  <div style="display:flex;gap:7px">
+    <label for="fileInput" class="tbtn" style="cursor:pointer;margin:0">
+      <svg viewBox="0 0 24 24" style="width:13px;height:13px" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       Importar planilha
     </label>
     <button class="tbtn" onclick="exportCSV()">
-      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <svg viewBox="0 0 24 24" style="width:13px;height:13px" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Exportar CSV
     </button>
-    <button class="tbtn accent" onclick="gerarPDF()">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      Gerar relatório PDF
+    <button class="tbtn accent" onclick="window.print()">
+      <svg viewBox="0 0 24 24" style="width:13px;height:13px" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Imprimir
     </button>
   </div>
 </div>
@@ -209,780 +102,196 @@ tr:hover td{background:var(--blue-light)}
   <div class="fg"><label>Tipo Frota</label><select id="fFrota" onchange="render()"><option value="">Todos</option></select></div>
   <div class="fg"><label>Combustível</label><select id="fComb" onchange="render()"><option value="">Todos</option></select></div>
   <div class="fg"><label>Mês</label><select id="fMes" onchange="render()"><option value="">Todos</option></select></div>
-  <button class="clrbtn" onclick="clearFilters()">
-    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    Limpar
-  </button>
+  <button class="clrbtn" onclick="clearFilters()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Limpar</button>
 </div>
 
-
-<input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="loadFile(event)" style="display:none">
-<input type="file" id="logoInput" accept="image/*" onchange="loadLogo(event)" style="display:none">
+<input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(event)">
 
 <div class="page" id="mainPage">
-  <div class="hint" id="hint">
-    <strong>Nenhuma planilha carregada</strong>
-    Clique em "Importar planilha" na barra superior para carregar seus dados.<br>
-    O painel lê automaticamente as colunas da sua planilha.
-  </div>
+  <div class="hint"><strong>Nenhuma planilha carregada</strong>Clique em "Importar planilha" para carregar seus dados.</div>
 </div>
 
 <script>
-let raw=[], charts={};
+let raw = [];
+let charts = {};
 
-// ── MAPEAMENTO EXATO DAS COLUNAS ──────────────────────────────────────────────
-function mapRow(r){
-  const keys=Object.keys(r);
-  const get=(...terms)=>{
-    const k=keys.find(k=>terms.some(t=>k.trim().toUpperCase().includes(t.toUpperCase())));
-    return k?String(r[k]??'').trim():'';
-  };
-  const getNum=(...terms)=>{
-    const k=keys.find(k=>terms.some(t=>k.trim().toUpperCase().includes(t.toUpperCase())));
-    if(!k) return 0;
-    const rv = r[k];
-    // se já é número, usa direto
-    if(typeof rv === 'number') return rv;
-    // string: remove R$, espaços, pontos de milhar, troca vírgula por ponto
-    const s = String(rv).replace(/R\$\s*/g,'').replace(/\s/g,'').replace(/\./g,'').replace(',','.');
-    return parseFloat(s)||0;
-  };
-
-  const valor  = getNum('VALOR EMISSAO','VALOR_EMISSAO','EMISSAO');
-  const litros = getNum('LITROS');
-  const odo    = getNum('ODOMETRO','HORIMETRO');
-  const vlitro = getNum('VL/LITRO','VLLITRO','VL LITRO');
-
-  // DATA — lê valor bruto (número serial ou string)
-  const dataKey = keys.find(k=>k.trim().toUpperCase().replace(/[^A-Z]/g,'').includes('DATATRANSACAO')||k.trim().toUpperCase().replace(/[^A-Z]/g,'')==='DATA');
-  let dt='—', mes='—';
-  if(dataKey){
-    const rv = r[dataKey];
-    let dia, m_, ano;
-    if(typeof rv === 'number' && rv > 1000){
-      // rv pode ser 46024.29741 (decimal = hora) — usa só a parte inteira
-      const epoch = new Date(Date.UTC(1899,11,30) + Math.floor(rv)*86400000);
-      dia=epoch.getUTCDate(); m_=epoch.getUTCMonth()+1; ano=epoch.getUTCFullYear();
-    } else {
-      const s = String(rv??'').trim();
-      if(s.includes('/')){
-        const p=s.split(' ')[0].split('/');
-        dia=parseInt(p[0]); m_=parseInt(p[1]); ano=parseInt(p[2]);
-      } else if(s.includes('-')){
-        const p=s.split(' ')[0].split('-');
-        ano=parseInt(p[0]); m_=parseInt(p[1]); dia=parseInt(p[2]);
-      } else if(/^\d{5}$/.test(s)){
-        const epoch=new Date(Date.UTC(1899,11,30)+parseInt(s)*86400000);
-        dia=epoch.getUTCDate(); m_=epoch.getUTCMonth()+1; ano=epoch.getUTCFullYear();
-      }
-    }
-    if(dia&&m_&&ano&&ano>2000){
-      dt=`${String(dia).padStart(2,'0')}/${String(m_).padStart(2,'0')}/${ano}`;
-      mes=`${String(m_).padStart(2,'0')}/${ano}`;
-    }
-  }
-
-  const kml = odo>0&&litros>0 ? parseFloat((odo/litros).toFixed(1)) : 0;
-
-  return{
-    data: dt,
-    mes,
-    filial:   get('NOME REDUZIDO','NOME_REDUZIDO','FILIAL'),
-    placa:    get('PLACA'),
-    motorista:get('NOME MOTORISTA','NOME_MOTORISTA','MOTORISTA'),
-    frota:    get('TIPO FROTA','TIPO_FROTA','FROTA'),
-    modelo:   get('MODELO VEICULO','MODELO_VEICULO','MODELO'),
-    combustivel: get('TIPO COMBUSTIVEL','TIPO_COMBUSTIVEL','COMBUSTIVEL'),
-    servico:  get('SERVICO','SERVIÇO'),
-    litros, valor, odo, vlitro, kml,
-  };
-}
-
-function stOf(kml){return kml>0&&kml<6?'Crítico':kml>0&&kml<8?'Alerta':'Normal';}
-function stCls(s){return s==='Crítico'?'b-crit':s==='Alerta'?'b-warn':'b-ok';}
-
-const CORES={'GASOLINA COMUM':'#1A56A0','GASOLINA ADITIVADA':'#2E6FC4','ETANOL':'#1A7A4A','DIESEL S-10 COMUM':'#6B4FBB','DIESEL S-10 ADITIVADO':'#854FBB','DIESEL S-500':'#B8860B','GNV':'#E07B00'};
-const cFor=f=>{const up=f.toUpperCase();const k=Object.keys(CORES).find(c=>up.includes(c));return k?CORES[k]:'#8A96A8';};
-
-function filtered(){
-  const fil=document.getElementById('fFilial').value;
-  const v=document.getElementById('fVei').value;
-  const mt=document.getElementById('fMot').value;
-  const fr=document.getElementById('fFrota').value;
-  const c=document.getElementById('fComb').value;
-  const m=document.getElementById('fMes').value;
-  return raw.filter(r=>
-    (!fil||r.filial===fil)&&(!v||r.placa===v)&&
-    (!mt||r.motorista===mt)&&(!fr||r.frota===fr)&&
-    (!c||r.combustivel===c)&&(!m||r.mes===m)
-  );
-}
-
-function uniq(arr,k){return[...new Set(arr.map(r=>r[k]).filter(Boolean))].sort();}
-
-function populateSelects(){
-  const fill=(id,arr)=>{
-    const el=document.getElementById(id),cur=el.value;
-    el.innerHTML='<option value="">Todos</option>'+arr.map(v=>`<option${v===cur?' selected':''}>${v}</option>`).join('');
-  };
-  fill('fFilial',uniq(raw,'filial'));
-  fill('fVei',uniq(raw,'placa'));
-  fill('fMot',uniq(raw,'motorista'));
-  fill('fFrota',uniq(raw,'frota'));
-  fill('fComb',uniq(raw,'combustivel'));
-  fill('fMes',uniq(raw,'mes'));
-}
-
-function clearFilters(){['fFilial','fVei','fMot','fFrota','fComb','fMes'].forEach(id=>document.getElementById(id).value='');render();}
-
-// ── RENDER PRINCIPAL ──────────────────────────────────────────────────────────
-function render(){
-  const d=filtered();
-  const page=document.getElementById('mainPage');
-  if(!raw.length){page.innerHTML='<div class="hint" id="hint"><strong>Nenhuma planilha carregada</strong>Clique em "Importar planilha" na barra superior.</div>';return;}
-
-  page.innerHTML=`
-    <div class="kgrid">
-      <div class="kcard"><div class="klbl">Gasto total</div><div class="kval" id="k1">—</div><div class="kdelta" id="k1d">no período</div></div>
-      <div class="kcard re"><div class="klbl">Custo médio / veículo</div><div class="kval" id="k2">—</div><div class="kdelta" id="k2d">por veículo ativo</div></div>
-      <div class="kcard am"><div class="klbl">Preço médio / litro</div><div class="kval" id="k3">—</div><div class="kdelta" id="k3d">média ponderada</div></div>
-      <div class="kcard gr"><div class="klbl">Total litros</div><div class="kval" id="k4">—</div><div class="kdelta">no período</div></div>
-      <div class="kcard pu"><div class="klbl">Abastecimentos</div><div class="kval" id="k5">—</div><div class="kdelta">registros</div></div>
-    </div>
-    <div class="alerts" id="alertBox"></div>
-
-    <div class="crow">
-      <div class="card">
-        <div class="card-hd"><span class="t">Evolução do gasto mensal (R$)</span></div>
-        <div class="csub">Custo total de combustível mês a mês</div>
-        <div style="position:relative;height:200px"><canvas id="cGasto"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-hd"><span class="t">Gasto por tipo de combustível</span></div>
-        <div class="csub">Distribuição do custo total no período</div>
-        <div id="legPie" class="leg"></div>
-        <div style="position:relative;height:170px"><canvas id="cPie"></canvas></div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:13px">
-      <div class="card-hd"><span class="t">Gasto por filial</span><span class="badge-blue">Clique na barra para ver condutores</span></div>
-      <div class="csub">Custo total por unidade — clique em uma filial para ver o detalhamento por motorista</div>
-      <div style="position:relative" id="filialChartWrap"><canvas id="cFilial"></canvas></div>
-    </div>
-
-    <div class="filial-drill" id="drillPanel">
-      <div class="drill-title">
-        <span id="drillTitle">Detalhamento</span>
-        <span class="drill-close" onclick="closeDrill()">✕ Fechar</span>
-      </div>
-      <div class="drill-grid" id="drillGrid"></div>
-    </div>
-
-    <div class="crow2">
-      <div class="card">
-        <div class="card-hd"><span class="t">Top 15 — veículos com maior gasto</span><span class="badge-blue">Custo</span></div>
-        <div class="csub">Ranking acumulado no período filtrado</div>
-        <div id="top10List"></div>
-      </div>
-      <div class="card">
-        <div class="card-hd"><span class="t">Top 15 — motoristas com maior gasto</span></div>
-        <div class="csub">Custo total por condutor no período</div>
-        <div id="motList"></div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:13px">
-      <div class="card-hd"><span class="t">Ranking de eficiência — km/L por veículo</span></div>
-      <div class="csub">Média por placa · verde = eficiente · vermelho = atenção</div>
-      <div id="rankList"></div>
-    </div>
-
-    <div class="card">
-      <div class="sec-hd">
-        <div><div class="t">Registros de abastecimento</div><div class="s" id="tblSub"></div></div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:11px;color:var(--text3)">Ordenar:</span>
-          <select id="sortSel" onchange="renderTable(filtered())" style="font-family:inherit;font-size:12px;padding:5px 9px;border:1px solid var(--border);border-radius:6px">
-            <option value="data">Data</option>
-            <option value="valor">Maior gasto</option>
-            <option value="litros">Maior volume</option>
-            <option value="kml">Menor km/L</option>
-          </select>
-        </div>
-      </div>
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr>
-            <th style="width:88px">Data</th>
-            <th style="width:88px">Filial</th>
-            <th style="width:82px">Placa</th>
-            <th style="width:90px">Modelo</th>
-            <th style="width:80px">Frota</th>
-            <th style="width:115px">Motorista</th>
-            <th style="width:110px">Combustível</th>
-            <th style="width:62px">Litros</th>
-            <th style="width:90px">Valor</th>
-            <th style="width:68px">R$/L</th>
-            <th style="width:88px">Odômetro</th>
-            <th style="width:62px">km/L</th>
-            <th style="width:72px">Status</th>
-          </tr></thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="footer">
-      <span id="footerSrc"></span>
-      <span id="footerDate">Atualizado em ${new Date().toLocaleDateString('pt-BR')}</span>
-    </div>
-  `;
-
-  renderKPIs(d);
-  renderAlerts(d);
-  renderCharts(d);
-  renderTop15(d);
-  renderRank(d);
-  renderTable(d);
-}
-
-function renderKPIs(d){
-  const V=d.reduce((s,r)=>s+r.valor,0);
-  const L=d.reduce((s,r)=>s+r.litros,0);
-  const veics=new Set(d.map(r=>r.placa).filter(Boolean)).size;
-  document.getElementById('k1').textContent=V.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
-  document.getElementById('k2').textContent=veics>0?(V/veics).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}):'—';
-  document.getElementById('k3').textContent=L>0?'R$'+(V/L).toFixed(2).replace('.',','):'—';
-  document.getElementById('k4').textContent=L.toLocaleString('pt-BR',{maximumFractionDigits:0})+' L';
-  document.getElementById('k5').textContent=d.length.toLocaleString('pt-BR');
-  document.getElementById('k2d').textContent=veics+' veículos ativos';
-}
-
-function renderAlerts(d){
-  const crits=d.filter(r=>stOf(r.kml)==='Crítico');
-  const warns=d.filter(r=>stOf(r.kml)==='Alerta');
-  const oks=d.filter(r=>stOf(r.kml)==='Normal');
-  const veiKml={};
-  d.filter(r=>r.kml>0).forEach(r=>{if(!veiKml[r.placa])veiKml[r.placa]=[];veiKml[r.placa].push(r.kml);});
-  const pior=Object.entries(veiKml).map(([p,ks])=>({p,avg:ks.reduce((s,k)=>s+k,0)/ks.length})).sort((a,b)=>a.avg-b.avg)[0];
-  const motGasto=Object.entries(d.reduce((acc,r)=>{acc[r.motorista]=(acc[r.motorista]||0)+r.valor;return acc},{})).sort((a,b)=>b[1]-a[1])[0];
-  document.getElementById('alertBox').innerHTML=`
-    <div class="acard crit">
-      <div class="aicon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-      <div><div class="atitle">Consumo crítico</div><div class="aval">${crits.length.toLocaleString('pt-BR')}</div>
-      <div class="asub">km/L abaixo de 6,0${pior?'<br>Pior: '+pior.p+' ('+pior.avg.toFixed(1)+' km/L)':''}</div></div>
-    </div>
-    <div class="acard warn">
-      <div class="aicon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      <div><div class="atitle">Em alerta</div><div class="aval">${warns.length.toLocaleString('pt-BR')}</div>
-      <div class="asub">km/L entre 6,0 e 8,0<br>Verificar manutenção preventiva</div></div>
-    </div>
-    <div class="acard ok">
-      <div class="aicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div><div class="atitle">Normais</div><div class="aval">${oks.length.toLocaleString('pt-BR')}</div>
-      <div class="asub">${motGasto?'Maior gasto: '+motGasto[0]+'<br>'+motGasto[1].toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}):'km/L acima de 8,0'}</div></div>
-    </div>`;
-}
-
-function dc(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
-
-function renderCharts(d){
-  const meses=uniq(d,'mes');
-  const combs=uniq(d,'combustivel');
-  const gastoM=meses.map(m=>Math.round(d.filter(r=>r.mes===m).reduce((s,r)=>s+r.valor,0)));
-
-  dc('cGasto');
-  charts['cGasto']=new Chart(document.getElementById('cGasto'),{
-    type:'bar',
-    data:{labels:meses,datasets:[
-      {type:'bar',data:gastoM,backgroundColor:'#1A56A022',borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4},
-      {type:'line',data:gastoM,borderColor:'#D94040',borderWidth:2,tension:.4,pointRadius:4,pointBackgroundColor:'#D94040',fill:false}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{ticks:{font:{size:10}},grid:{display:false}},
-              y:{ticks:{font:{size:10},callback:v=>'R$'+(v/1000).toFixed(0)+'k'},grid:{color:'rgba(0,0,0,0.04)'}}}}
-  });
-
-  const pieV=combs.map(f=>Math.round(d.filter(r=>r.combustivel===f).reduce((s,r)=>s+r.valor,0)));
-  const totV=pieV.reduce((s,v)=>s+v,0)||1;
-  document.getElementById('legPie').innerHTML=combs.map((f,i)=>`<span class="li"><span class="ld" style="background:${cFor(f)}"></span>${f} ${Math.round(pieV[i]*100/totV)}%</span>`).join('');
-  dc('cPie');
-  charts['cPie']=new Chart(document.getElementById('cPie'),{
-    type:'doughnut',
-    data:{labels:combs,datasets:[{data:pieV,backgroundColor:combs.map(cFor),borderWidth:3,borderColor:'#fff',hoverOffset:8}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})} (${Math.round(c.parsed*100/totV)}%)`}}}}
-  });
-
-  // GRÁFICO FILIAIS — clicável
-  const filiais=Object.entries(d.reduce((acc,r)=>{acc[r.filial]=(acc[r.filial]||0)+r.valor;return acc},{}))
-    .filter(([k])=>k&&k!=='—').sort((a,b)=>b[1]-a[1]);
-  const fh=Math.max(filiais.length*36+60,120);
-  document.getElementById('filialChartWrap').style.height=fh+'px';
-  dc('cFilial');
-  const filialSelecionada = document.getElementById('fFilial').value;
-  charts['cFilial']=new Chart(document.getElementById('cFilial'),{
-    type:'bar',
-    data:{labels:filiais.map(f=>f[0]),datasets:[{data:filiais.map(f=>Math.round(f[1])),
-      backgroundColor:filiais.map(f=>f[0]===filialSelecionada?'#1A56A0':'#1A56A044'),
-      borderColor:'#1A56A0',borderWidth:1.5,borderRadius:4,hoverBackgroundColor:'#1A56A0'}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` R$ ${c.parsed.toLocaleString('pt-BR',{maximumFractionDigits:0})}`}}},
-      scales:{x:{ticks:{font:{size:10},callback:v=>'R$'+(v/1000).toFixed(0)+'k'},grid:{color:'rgba(0,0,0,0.04)'}},
-              y:{ticks:{font:{size:11}},grid:{display:false}}},
-      onClick:(evt,els)=>{
-        if(!els.length)return;
-        const idx=els[0].index;
-        const filialNome=filiais[idx][0];
-        // seta o filtro de filial e re-renderiza tudo
-        const sel=document.getElementById('fFilial');
-        if(sel.value===filialNome){
-          // segundo clique na mesma filial = limpa filtro
-          sel.value='';
-          closeDrill();
-        } else {
-          sel.value=filialNome;
-          openDrill(filialNome, filtered());
-        }
-        render();
-      }
-    }
-  });
-}
-
-function openDrill(filialNome, d){
-  const sub=d.filter(r=>r.filial===filialNome);
-  const motores=Object.entries(sub.reduce((acc,r)=>{
-    if(!acc[r.motorista])acc[r.motorista]={valor:0,litros:0,abs:0};
-    acc[r.motorista].valor+=r.valor;
-    acc[r.motorista].litros+=r.litros;
-    acc[r.motorista].abs+=1;
-    return acc;
-  },{})).sort((a,b)=>b[1].valor-a[1].valor);
-
-  document.getElementById('drillTitle').textContent='Filial: '+filialNome+' — detalhamento por motorista';
-  document.getElementById('drillGrid').innerHTML=motores.map(([mot,v])=>`
-    <div class="drill-card">
-      <div class="mot">${mot||'—'}</div>
-      <div class="val">${v.valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})}</div>
-      <div class="sub">${v.litros.toFixed(0)} L · ${v.abs} abastecimento${v.abs!==1?'s':''}</div>
-    </div>`).join('');
-  document.getElementById('drillPanel').classList.add('show');
-  document.getElementById('drillPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-
-function closeDrill(){document.getElementById('drillPanel').classList.remove('show');}
-
-function renderTop15(d){
-  const veiGasto=Object.entries(d.reduce((acc,r)=>{
-    if(!acc[r.placa])acc[r.placa]={v:0,mot:r.motorista,modelo:r.modelo};
-    acc[r.placa].v+=r.valor;return acc;
-  },{})).sort((a,b)=>b[1].v-a[1].v).slice(0,15);
-  const maxV=veiGasto[0]?.[1].v||1;
-  document.getElementById('top10List').innerHTML=veiGasto.map(([placa,d],i)=>`
-    <div class="top-row">
-      <span class="top-n">${i+1}</span>
-      <span class="top-lbl" title="${placa}">${placa}</span>
-      <span class="top-sub" title="${d.mot}">${d.mot}</span>
-      <div class="top-bar-wrap"><div class="top-bar" style="width:${Math.round(d.v*100/maxV)}%;background:${i===0?'#D94040':i<3?'#E07B00':'#1A56A0'}"></div></div>
-      <span class="top-val">${d.v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})}</span>
-    </div>`).join('');
-
-  const motGasto=Object.entries(d.reduce((acc,r)=>{acc[r.motorista]=(acc[r.motorista]||0)+r.valor;return acc},{}))
-    .filter(([k])=>k&&k!=='—').sort((a,b)=>b[1]-a[1]).slice(0,15);
-  const maxM=motGasto[0]?.[1]||1;
-  document.getElementById('motList').innerHTML=motGasto.map(([mot,v],i)=>`
-    <div class="top-row">
-      <span class="top-n">${i+1}</span>
-      <span class="top-lbl" style="min-width:120px" title="${mot}">${mot}</span>
-      <div class="top-bar-wrap"><div class="top-bar" style="width:${Math.round(v*100/maxM)}%;background:${i===0?'#D94040':i<3?'#E07B00':'#1A56A0'}"></div></div>
-      <span class="top-val">${v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})}</span>
-    </div>`).join('');
-}
-
-function renderRank(d){
-  const veiKml={};
-  d.filter(r=>r.kml>0).forEach(r=>{if(!veiKml[r.placa])veiKml[r.placa]=[];veiKml[r.placa].push(r.kml);});
-  const ranked=Object.entries(veiKml).map(([p,ks])=>({p,avg:ks.reduce((s,k)=>s+k,0)/ks.length}))
-    .sort((a,b)=>b.avg-a.avg).slice(0,20);
-  const max=ranked[0]?.avg||1;
-  document.getElementById('rankList').innerHTML=ranked.map((r,i)=>`
-    <div class="rank-row">
-      <span class="rn">${i+1}</span>
-      <span class="rlbl">${r.p}</span>
-      <div class="rbar-wrap"><div class="rbar" style="width:${Math.round(r.avg*100/max)}%;background:${r.avg<6?'#D94040':r.avg<8?'#E07B00':'#1A7A4A'}"></div></div>
-      <span class="rval">${r.avg.toFixed(1)} km/L</span>
-    </div>`).join('');
-}
-
-function renderTable(d){
-  const key=document.getElementById('sortSel')?.value||'data';
-  const avgV=d.reduce((s,r)=>s+r.valor,0)/(d.length||1);
-  const sorted=[...d].sort((a,b)=>key==='data'
-    ? b.data.split('/').reverse().join('').localeCompare(a.data.split('/').reverse().join(''))
-    : b[key]-a[key]);
-  document.getElementById('tblSub').textContent=`${sorted.length.toLocaleString('pt-BR')} registro${sorted.length!==1?'s':''}`;
-  document.getElementById('tbody').innerHTML=sorted.map(r=>{
-    const st=stOf(r.kml);
-    return`<tr>
-      <td>${r.data}</td>
-      <td title="${r.filial}">${r.filial}</td>
-      <td style="font-weight:700">${r.placa}</td>
-      <td>${r.modelo}</td>
-      <td>${r.frota}</td>
-      <td title="${r.motorista}">${r.motorista}</td>
-      <td>${r.combustivel}</td>
-      <td>${r.litros.toLocaleString('pt-BR',{maximumFractionDigits:1})}</td>
-      <td class="${r.valor>avgV*1.5?'cost-hi':''}">${r.valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</td>
-      <td>${r.litros>0?'R$'+(r.valor/r.litros).toFixed(2).replace('.',','):'—'}</td>
-      <td>${r.odo>0?r.odo.toLocaleString('pt-BR'):'—'}</td>
-      <td>${r.kml>0?r.kml.toFixed(1).replace('.',','):'—'}</td>
-      <td><span class="badge ${stCls(st)}">${st}</span></td>
-    </tr>`;
-  }).join('');
-}
-
-// ── UPLOAD ─────────────────────────────────────────────────────────────────────
-function toggleUpload(){}
-function drop(e){e.preventDefault();const f=e.dataTransfer.files[0];if(f)processFile(f);}
-function loadFile(e){const f=e.target.files[0];if(f)processFile(f);}
-
-function processFile(file){
-  const reader=new FileReader();
-  reader.onload=function(ev){
-    try{
-      const wb=XLSX.read(ev.target.result,{type:'binary',cellDates:false});
-      const ws=wb.Sheets[wb.SheetNames[0]];
-      const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
-      if(!rows.length){alert('Planilha vazia.');return;}
-      console.log('Colunas detectadas:', Object.keys(rows[0]));
+function handleFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  console.log('Arquivo selecionado:', file.name);
+  
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    try {
+      console.log('Lendo arquivo...');
+      const wb = XLSX.read(ev.target.result, {type: 'array'});
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(ws, {defval: ''});
+      
+      console.log('Linhas lidas:', rows.length);
       console.log('Primeira linha:', rows[0]);
-      raw=rows.map(mapRow).filter(r=>(r.valor>0||r.litros>0) && r.placa && r.placa!=='—' && r.placa.length>=4);
-      console.log('Primeira linha processada:', raw[0]);
-      console.log('5 primeiros valores:', raw.slice(0,5).map(r=>r.valor));
-      console.log('Soma total:', raw.reduce((s,r)=>s+r.valor,0).toFixed(2));
-      if(!raw.length){alert('Nenhum registro válido encontrado. Verifique se a coluna VALOR EMISSAO e LITROS estão preenchidas.');return;}
-      document.getElementById('srcLabel').textContent=file.name+' · '+raw.length.toLocaleString('pt-BR')+' registros';
-      const upZone=document.getElementById('upZone'); if(upZone) upZone.classList.remove('show');
-      populateSelects();render();
-    }catch(err){
-      console.error(err);
-      alert('Erro ao ler o arquivo.\n'+err.message);
+      
+      if (!rows.length) {
+        alert('Planilha vazia');
+        return;
+      }
+      
+      raw = parseRows(rows);
+      console.log('Registros processados:', raw.length);
+      console.log('Primeiro registro:', raw[0]);
+      
+      if (!raw.length) {
+        alert('Nenhum registro válido. Verifique VALOR EMISSAO e LITROS.');
+        return;
+      }
+      
+      document.getElementById('srcLabel').textContent = file.name + ' · ' + raw.length.toLocaleString('pt-BR') + ' registros';
+      populateSelects();
+      render();
+    } catch(err) {
+      console.error('Erro:', err);
+      alert('Erro ao ler arquivo: ' + err.message);
     }
   };
-  reader.readAsBinaryString(file);
+  reader.readAsArrayBuffer(file);
 }
 
-function loadLogo(e){
-  const f=e.target.files[0];if(!f)return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    const slot=document.getElementById('logoSlot');
-    slot.innerHTML=`<img src="${ev.target.result}" alt="Logo">`;
-    slot.onclick=null;
-  };
-  reader.readAsDataURL(f);
+function parseRows(rows) {
+  return rows.map(r => {
+    const keys = Object.keys(r);
+    const getCol = (...terms) => keys.find(k => terms.some(t => k.trim().toUpperCase().replace(/[^A-Z]/g,'').includes(t.toUpperCase().replace(/[^A-Z]/g,''))));
+    const getNum = (col) => {
+      if (!col) return 0;
+      const v = r[col];
+      if (typeof v === 'number') return v;
+      const s = String(v||'').replace(/[R$\s]/g,'').replace(/\./g,'').replace(',','.');
+      return parseFloat(s) || 0;
+    };
+    const getStr = (col) => col ? String(r[col]||'').trim() : '';
+    
+    const placa = getStr(getCol('PLACA'));
+    if (!placa || placa.length < 4) return null;
+    
+    // Data
+    const dataCol = getCol('DATATRANSACAO');
+    let dt = '—', mes = '—';
+    if (dataCol) {
+      const v = r[dataCol];
+      let dia, m, ano;
+      if (typeof v === 'number' && v > 1000) {
+        const epoch = new Date(Date.UTC(1899,11,30) + Math.floor(v)*86400000);
+        dia = epoch.getUTCDate(); m = epoch.getUTCMonth()+1; ano = epoch.getUTCFullYear();
+      } else {
+        const s = String(v||'').split(' ')[0];
+        if (s.includes('/')) {
+          const p = s.split('/');
+          dia = parseInt(p[0]); m = parseInt(p[1]); ano = parseInt(p[2]);
+        } else if (s.includes('-')) {
+          const p = s.split('-');
+          ano = parseInt(p[0]); m = parseInt(p[1]); dia = parseInt(p[2]);
+        }
+      }
+      if (dia && m && ano && ano > 2000) {
+        dt = String(dia).padStart(2,'0') + '/' + String(m).padStart(2,'0') + '/' + ano;
+        mes = String(m).padStart(2,'0') + '/' + ano;
+      }
+    }
+    
+    const litros = getNum(getCol('LITROS'));
+    const valor = getNum(getCol('VALOREMISSAO','EMISSAO'));
+    const odo = getNum(getCol('ODOMETRO','HORIMETRO'));
+    const kml = odo>0 && litros>0 ? parseFloat((odo/litros).toFixed(1)) : 0;
+    
+    return {
+      data: dt, mes, filial: getStr(getCol('NOMEREDUZIDO','FILIAL')), placa,
+      veiculo: getStr(getCol('MODELOVEICULO','MODELO')),
+      motorista: getStr(getCol('NOMEMOTORISTA','MOTORISTA')),
+      frota: getStr(getCol('TIPOFROTA','FROTA')),
+      combustivel: getStr(getCol('TIPOCOMBUSTIVEL','COMBUSTIVEL')),
+      litros, valor, odo, kml
+    };
+  }).filter(Boolean);
 }
 
-function exportCSV(){
-  if(!raw.length){alert('Nenhum dado para exportar.');return;}
-  const d=filtered();
-  const hdr='Data,Filial,Placa,Modelo,Frota,Motorista,Combustível,Litros,Valor,R$/L,Odômetro,km/L,Status\n';
-  const rows=d.map(r=>[r.data,r.filial,r.placa,r.modelo,r.frota,r.motorista,r.combustivel,
-    r.litros.toFixed(2),r.valor.toFixed(2),r.litros>0?(r.valor/r.litros).toFixed(2):'',r.odo,r.kml,stOf(r.kml)].join(',')).join('\n');
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob(['\uFEFF'+hdr+rows],{type:'text/csv;charset=utf-8'}));
-  a.download='combustivel-export.csv';a.click();
-}
+function stOf(kml) { return kml>0&&kml<6?'Crítico':kml>0&&kml<8?'Alerta':'Normal'; }
+function uniq(arr,k) { return [...new Set(arr.map(r=>r[k]).filter(Boolean))].sort(); }
 
-function buildSVGGastoMensal(d){
-  const meses = [...new Set(d.map(r=>r.mes).filter(Boolean))].sort();
-  if(!meses.length) return '<p style="font-size:11px;color:#aaa">Sem dados mensais</p>';
-  const gastoM = meses.map(m=>d.filter(r=>r.mes===m).reduce((s,r)=>s+r.valor,0));
-  const maxG = Math.max(...gastoM)||1;
-
-  const W=780, H=130, padL=62, padR=16, padT=28, padB=28;
-  const chartW = W-padL-padR;
-  const chartH = H-padT-padB;
-  const bw = Math.min(Math.floor(chartW/meses.length)-6, 52);
-  const gap = (chartW - bw*meses.length)/(meses.length+1);
-
-  // Y axis lines
-  const yTicks = 4;
-  let yLines = '';
-  for(let i=0;i<=yTicks;i++){
-    const y = padT + chartH - (i/yTicks)*chartH;
-    const val = (maxG*i/yTicks);
-    const label = val>=1000000 ? 'R$'+(val/1000000).toFixed(1)+'M' : val>=1000 ? 'R$'+(val/1000).toFixed(0)+'k' : 'R$'+val.toFixed(0);
-    yLines += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#eee" stroke-width="1"/>`;
-    yLines += `<text x="${padL-4}" y="${y+4}" text-anchor="end" font-size="8" fill="#aaa">${label}</text>`;
-  }
-
-  // Bars + labels + x axis
-  let bars='', labels='', xLabels='', linePoints='';
-  meses.forEach((m,i)=>{
-    const x = padL + gap + i*(bw+gap);
-    const bh = Math.max((gastoM[i]/maxG)*chartH, 2);
-    const y = padT + chartH - bh;
-    const cx = x + bw/2;
-    const cy = padT + chartH - (gastoM[i]/maxG)*chartH;
-
-    bars += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" rx="3" fill="#1A56A044" stroke="#1A56A0" stroke-width="1"/>`;
-
-    // value label on top of bar
-    const valLabel = gastoM[i]>=1000000 ? 'R$'+(gastoM[i]/1000000).toFixed(2)+'M' : gastoM[i]>=1000 ? 'R$'+(gastoM[i]/1000).toFixed(0)+'k' : 'R$'+gastoM[i].toFixed(0);
-    labels += `<text x="${cx.toFixed(1)}" y="${(y-4).toFixed(1)}" text-anchor="middle" font-size="8" font-weight="700" fill="#0F3A73">${valLabel}</text>`;
-
-    xLabels += `<text x="${cx.toFixed(1)}" y="${(padT+chartH+14).toFixed(1)}" text-anchor="middle" font-size="8" fill="#8A96A8">${m}</text>`;
-    linePoints += `${cx.toFixed(1)},${cy.toFixed(1)} `;
+function populateSelects() {
+  ['fFilial','fVei','fMot','fFrota','fComb','fMes'].forEach((id,i)=>{
+    const key = ['filial','placa','motorista','frota','combustivel','mes'][i];
+    const el = document.getElementById(id);
+    const cur = el.value;
+    el.innerHTML = '<option value="">Todos</option>' + uniq(raw,key).map(v=>`<option${v===cur?' selected':''}>${v}</option>`).join('');
   });
-
-  // trend line
-  const trendLine = meses.length>1 ? `<polyline points="${linePoints.trim()}" fill="none" stroke="#D94040" stroke-width="2" stroke-linejoin="round"/>
-    ${meses.map((m,i)=>{
-      const cx=padL+gap+i*(bw+gap)+bw/2;
-      const cy=padT+chartH-(gastoM[i]/maxG)*chartH;
-      return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3" fill="#D94040"/>`;
-    }).join('')}` : '';
-
-  return `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block">
-    ${yLines}
-    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="#ddd" stroke-width="1"/>
-    ${bars}${trendLine}${labels}${xLabels}
-  </svg>`;
 }
 
-function gerarPDF(){
-  if(!raw.length){alert('Importe uma planilha antes de gerar o relatório.');return;}
-  const d = filtered();
-  const filialSel = document.getElementById('fFilial').value || 'Todas as filiais';
-  const mesSel = document.getElementById('fMes').value || 'Todos os meses';
+function clearFilters() {
+  ['fFilial','fVei','fMot','fFrota','fComb','fMes'].forEach(id=>document.getElementById(id).value='');
+  render();
+}
 
+function filtered() {
+  const f = document.getElementById('fFilial').value;
+  const v = document.getElementById('fVei').value;
+  const mt = document.getElementById('fMot').value;
+  const fr = document.getElementById('fFrota').value;
+  const c = document.getElementById('fComb').value;
+  const m = document.getElementById('fMes').value;
+  return raw.filter(r=>(f===''||r.filial===f)&&(v===''||r.placa===v)&&(mt===''||r.motorista===mt)&&(fr===''||r.frota===fr)&&(c===''||r.combustivel===c)&&(m===''||r.mes===m));
+}
+
+function render() {
+  if (!raw.length) return;
+  const d = filtered();
+  const page = document.getElementById('mainPage');
+  
   // KPIs
   const V = d.reduce((s,r)=>s+r.valor,0);
   const L = d.reduce((s,r)=>s+r.litros,0);
-  const veics = new Set(d.map(r=>r.placa).filter(Boolean)).size;
-  const kmls = d.filter(r=>r.kml>0);
-  const avgKml = kmls.length ? kmls.reduce((s,r)=>s+r.kml,0)/kmls.length : 0;
+  const veics = new Set(d.map(r=>r.placa)).size;
   const crits = d.filter(r=>stOf(r.kml)==='Crítico').length;
   const warns = d.filter(r=>stOf(r.kml)==='Alerta').length;
-
-  // Top 15 veículos
-  const topVei = Object.entries(d.reduce((acc,r)=>{
-    if(!acc[r.placa])acc[r.placa]={v:0,mot:r.motorista};
-    acc[r.placa].v+=r.valor; return acc;
-  },{})).sort((a,b)=>b[1].v-a[1].v).slice(0,15);
-
-  // Top 15 motoristas
-  const topMot = Object.entries(d.reduce((acc,r)=>{
-    acc[r.motorista]=(acc[r.motorista]||0)+r.valor; return acc;
-  },{})).filter(([k])=>k&&k!=='—').sort((a,b)=>b[1]-a[1]).slice(0,15);
-
-  // Filiais
-  const filiais = Object.entries(d.reduce((acc,r)=>{
-    if(!acc[r.filial])acc[r.filial]={v:0,abs:0,veics:new Set()};
-    acc[r.filial].v+=r.valor; acc[r.filial].abs+=1; acc[r.filial].veics.add(r.placa); return acc;
-  },{})).filter(([k])=>k&&k!=='—').sort((a,b)=>b[1].v-a[1].v);
-
-  const maxVei = topVei[0]?.[1].v||1;
-  const maxMot = topMot[0]?.[1]||1;
-  const maxFil = filiais[0]?.[1].v||1;
-
-  const bar=(val,max,color)=>`<div style="height:6px;background:#eee;border-radius:3px;overflow:hidden;flex:1"><div style="height:100%;width:${Math.round(val*100/max)}%;background:${color};border-radius:3px"></div></div>`;
-  const cur=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
-
-  const svgGastoMensal = buildSVGGastoMensal(d);
-
-  const html = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
-<title>Relatório de Combustível</title>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;color:#0F1B2D;font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  @page{size:A4 landscape;margin:16mm 14mm}
-  @media print{
-    .page-break{page-break-before:always}
-    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  }
-  .page{width:100%;padding:0;background:#fff}
-  /* HEADER */
-  .rpt-header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:10px;border-bottom:3px solid #0F3A73;margin-bottom:16px}
-  .rpt-logo-slot{width:48px;height:48px;border:2px dashed #ccc;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#aaa}
-  .rpt-title{flex:1;padding-left:14px}
-  .rpt-title h1{font-size:18px;font-weight:700;color:#0F3A73;letter-spacing:-.3px}
-  .rpt-title p{font-size:11px;color:#8A96A8;margin-top:2px}
-  .rpt-meta{text-align:right;font-size:10px;color:#8A96A8;line-height:1.7}
-  .rpt-meta strong{color:#0F3A73;font-size:11px}
-  /* KPI STRIP */
-  .kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
-  .kpi{background:#F0F4FA;border-radius:8px;padding:10px 12px;border-top:3px solid #1A56A0}
-  .kpi.re{border-color:#D94040}.kpi.am{border-color:#E07B00}.kpi.gr{border-color:#1A7A4A}.kpi.pu{border-color:#6B4FBB}
-  .kpi-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:#8A96A8;font-weight:700;margin-bottom:4px}
-  .kpi-val{font-size:16px;font-weight:700;color:#0F1B2D;line-height:1}
-  .kpi-sub{font-size:9px;color:#8A96A8;margin-top:2px}
-  /* ALERT ROW */
-  .alert-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-  .al{border-radius:8px;padding:8px 12px;display:flex;gap:10px;align-items:center}
-  .al.crit{background:#FEF0F0;border:1px solid #F5CACA}
-  .al.warn{background:#FEF7EC;border:1px solid #F5DCA0}
-  .al.ok{background:#EDFAF3;border:1px solid #A8E0C0}
-  .al-val{font-size:20px;font-weight:700}
-  .al.crit .al-val{color:#D94040}.al.warn .al-val{color:#E07B00}.al.ok .al-val{color:#1A7A4A}
-  .al-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
-  .al.crit .al-lbl{color:#D94040}.al.warn .al-lbl{color:#E07B00}.al.ok .al-lbl{color:#1A7A4A}
-  .al-sub{font-size:9px;color:#8A96A8}
-  /* SECTION */
-  .sec-title{font-size:11px;font-weight:700;color:#0F3A73;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #DDE4F0}
-  /* TWO COL */
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-  .col-card{background:#F8FAFD;border:1px solid #DDE4F0;border-radius:8px;padding:12px}
-  /* RANK ROWS */
-  .rrow{display:flex;align-items:center;gap:7px;padding:4px 0;border-bottom:1px solid #F0F4FA}
-  .rrow:last-child{border:none}
-  .rn{font-size:9px;color:#aaa;width:14px;text-align:center;flex-shrink:0;font-weight:700}
-  .rlbl{font-size:10px;font-weight:600;min-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .rsub{font-size:9px;color:#8A96A8;min-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .rval{font-size:10px;font-weight:700;min-width:78px;text-align:right;color:#0F1B2D;flex-shrink:0}
-  /* FILIAIS TABLE */
-  .ftable{width:100%;border-collapse:collapse;font-size:10px}
-  .ftable th{padding:5px 8px;text-align:left;font-size:9px;font-weight:700;color:#8A96A8;border-bottom:2px solid #DDE4F0;text-transform:uppercase;background:#F0F4FA}
-  .ftable td{padding:5px 8px;border-bottom:1px solid #F0F4FA}
-  .ftable tr:hover td{background:#F8FAFD}
-  .ftable .val{font-weight:700;color:#0F1B2D}
-  .ftable .pct{font-size:9px;color:#8A96A8}
-  /* PAGE FOOTER */
-  .rpt-footer{margin-top:12px;padding-top:8px;border-top:1px solid #DDE4F0;display:flex;justify-content:space-between;font-size:9px;color:#aaa}
-  .badge-crit{background:#FEF0F0;color:#D94040;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700}
-  .badge-warn{background:#FEF7EC;color:#E07B00;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700}
-  .badge-ok{background:#EDFAF3;color:#1A7A4A;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700}
-</style></head><body>
-
-<!-- ═══ PÁGINA 1: KPIs + FILIAIS ══════════════════════════════════════════ -->
-<div class="page">
-  <div class="rpt-header">
-    <div class="rpt-logo-slot">LOGO</div>
-    <div class="rpt-title">
-      <h1>Relatório de Combustível</h1>
-      <p>Detalhamento de gastos por filial, veículo e motorista</p>
+  const cur = v => v.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0});
+  
+  page.innerHTML = `
+    <div class="kgrid">
+      <div class="kcard"><div class="klbl">Gasto total</div><div class="kval">${cur(V)}</div><div class="kdelta">no período</div></div>
+      <div class="kcard re"><div class="klbl">Custo médio/veículo</div><div class="kval">${veics>0?cur(V/veics):'—'}</div><div class="kdelta">${veics} veículos</div></div>
+      <div class="kcard am"><div class="klbl">Preço médio/litro</div><div class="kval">${L>0?'R$'+(V/L).toFixed(2).replace('.',','):'—'}</div><div class="kdelta">média</div></div>
+      <div class="kcard gr"><div class="klbl">Total litros</div><div class="kval">${L.toLocaleString('pt-BR',{maximumFractionDigits:0})} L</div><div class="kdelta">no período</div></div>
+      <div class="kcard pu"><div class="klbl">Abastecimentos</div><div class="kval">${d.length.toLocaleString('pt-BR')}</div><div class="kdelta">registros</div></div>
     </div>
-    <div class="rpt-meta">
-      <strong>Período:</strong> ${mesSel}<br>
-      <strong>Filial:</strong> ${filialSel}<br>
-      <strong>Gerado em:</strong> ${new Date().toLocaleDateString('pt-BR')}<br>
-      <strong>Registros:</strong> ${d.length.toLocaleString('pt-BR')}
+    
+    <div class="alerts">
+      <div class="acard crit"><div class="aicon">⚠</div><div><div class="atitle">Crítico</div><div class="aval">${crits}</div><div class="asub">km/L &lt; 6,0</div></div></div>
+      <div class="acard warn"><div class="aicon">!</div><div><div class="atitle">Alerta</div><div class="aval">${warns}</div><div class="asub">6,0 ≤ km/L &lt; 8,0</div></div></div>
+      <div class="acard ok"><div class="aicon">✓</div><div><div class="atitle">Normal</div><div class="aval">${d.length-crits-warns}</div><div class="asub">km/L ≥ 8,0</div></div></div>
     </div>
-  </div>
-
-  <div class="kpi-strip">
-    <div class="kpi"><div class="kpi-lbl">Gasto total</div><div class="kpi-val">${cur(V)}</div><div class="kpi-sub">no período</div></div>
-    <div class="kpi re"><div class="kpi-lbl">Custo médio/veículo</div><div class="kpi-val">${veics>0?cur(V/veics):'—'}</div><div class="kpi-sub">${veics} veículos ativos</div></div>
-    <div class="kpi am"><div class="kpi-lbl">Preço médio/litro</div><div class="kpi-val">${L>0?'R$'+(V/L).toFixed(2).replace('.',','):'—'}</div><div class="kpi-sub">média ponderada</div></div>
-    <div class="kpi gr"><div class="kpi-lbl">Total litros</div><div class="kpi-val">${L.toLocaleString('pt-BR',{maximumFractionDigits:0})} L</div><div class="kpi-sub">no período</div></div>
-    <div class="kpi pu"><div class="kpi-lbl">Média km/L</div><div class="kpi-val">${avgKml>0?avgKml.toFixed(1).replace('.',','):'—'}</div><div class="kpi-sub">eficiência da frota</div></div>
-  </div>
-
-  <div class="alert-strip">
-    <div class="al crit"><div><div class="al-lbl">Consumo crítico</div><div class="al-val">${crits.toLocaleString('pt-BR')}</div><div class="al-sub">km/L abaixo de 6,0</div></div></div>
-    <div class="al warn"><div><div class="al-lbl">Em alerta</div><div class="al-val">${warns.toLocaleString('pt-BR')}</div><div class="al-sub">km/L entre 6,0 e 8,0</div></div></div>
-    <div class="al ok"><div><div class="al-lbl">Normais</div><div class="al-val">${(d.length-crits-warns).toLocaleString('pt-BR')}</div><div class="al-sub">km/L acima de 8,0</div></div></div>
-  </div>
-
-  <div class="sec-title" style="margin-top:14px">Evolução do gasto mensal (R$)</div>
-  <div style="margin-bottom:14px">${svgGastoMensal}</div>
-
-  <div class="sec-title">Gasto por filial</div>
-  <table class="ftable">
-    <thead><tr>
-      <th>#</th><th>Filial</th><th>Gasto total</th><th>% do total</th><th>Abastecimentos</th><th>Veículos</th><th>Custo médio/veículo</th><th>Distribuição</th>
-    </tr></thead>
-    <tbody>
-      ${filiais.map(([f,v],i)=>`<tr>
-        <td style="color:#aaa;font-size:9px">${i+1}</td>
-        <td style="font-weight:600">${f}</td>
-        <td class="val">${cur(v.v)}</td>
-        <td class="pct">${(v.v*100/V).toFixed(1)}%</td>
-        <td style="text-align:center">${v.abs.toLocaleString('pt-BR')}</td>
-        <td style="text-align:center">${v.veics.size}</td>
-        <td>${cur(v.v/v.veics.size)}</td>
-        <td style="width:120px">${bar(v.v,maxFil,'#1A56A0')}</td>
-      </tr>`).join('')}
-    </tbody>
-  </table>
-
-  <div class="rpt-footer">
-    <span>Relatório de Combustível — Página 1 de 2</span>
-    <span>Dados referentes ao período: ${mesSel} · Filial: ${filialSel}</span>
-  </div>
-</div>
-
-<!-- ═══ PÁGINA 2: TOP VEÍCULOS + MOTORISTAS ═══════════════════════════════ -->
-<div class="page page-break">
-  <div class="rpt-header">
-    <div class="rpt-logo-slot">LOGO</div>
-    <div class="rpt-title">
-      <h1>Relatório de Combustível</h1>
-      <p>Top 15 veículos e motoristas por gasto</p>
+    
+    <div class="card">
+      <div class="sec-hd"><div class="t">Registros de abastecimento</div><div class="s">${d.length.toLocaleString('pt-BR')} registros</div></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>Filial</th><th>Placa</th><th>Motorista</th><th>Combustível</th><th>Litros</th><th>Valor</th><th>R$/L</th><th>km/L</th><th>Status</th></tr></thead>
+          <tbody>${d.map((r,i)=>{
+            const st = stOf(r.kml);
+            return `<tr>
+              <td>${r.data}</td><td>${r.filial}</td><td style="font-weight:700">${r.placa}</td>
+              <td>${r.motorista}</td><td>${r.combustivel}</td>
+              <td>${r.litros.toLocaleString('pt-BR',{maximumFractionDigits:1})}</td>
+              <td>${cur(r.valor)}</td>
+              <td>${r.litros>0?'R$'+(r.valor/r.litros).toFixed(2).replace('.',','):'—'}</td>
+              <td>${r.kml>0?r.kml.toFixed(1).replace('.',','):'—'}</td>
+              <td><span class="badge ${st==='Crítico'?'b-crit':st==='Alerta'?'b-warn':'b-ok'}">${st}</span></td>
+            </tr>`;
+          }).join('')}
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="rpt-meta">
-      <strong>Período:</strong> ${mesSel}<br>
-      <strong>Filial:</strong> ${filialSel}<br>
-      <strong>Gerado em:</strong> ${new Date().toLocaleDateString('pt-BR')}
-    </div>
-  </div>
-
-  <div class="two-col">
-    <div class="col-card">
-      <div class="sec-title">Top 15 — veículos com maior gasto</div>
-      ${topVei.map(([p,d],i)=>`
-        <div class="rrow">
-          <span class="rn">${i+1}</span>
-          <span class="rlbl">${p}</span>
-          <span class="rsub">${d.mot}</span>
-          ${bar(d.v,maxVei,i===0?'#D94040':i<3?'#E07B00':'#1A56A0')}
-          <span class="rval">${cur(d.v)}</span>
-        </div>`).join('')}
-    </div>
-    <div class="col-card">
-      <div class="sec-title">Top 15 — motoristas com maior gasto</div>
-      ${topMot.map(([m,v],i)=>`
-        <div class="rrow">
-          <span class="rn">${i+1}</span>
-          <span class="rlbl" style="min-width:130px">${m}</span>
-          ${bar(v,maxMot,i===0?'#D94040':i<3?'#E07B00':'#1A56A0')}
-          <span class="rval">${cur(v)}</span>
-        </div>`).join('')}
-    </div>
-  </div>
-
-  <div class="sec-title">Resumo por filial — detalhamento de motoristas (top 3 por filial)</div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-    ${filiais.slice(0,9).map(([f,fv])=>{
-      const motFilial = Object.entries(
-        d.filter(r=>r.filial===f).reduce((acc,r)=>{acc[r.motorista]=(acc[r.motorista]||0)+r.valor;return acc},{})
-      ).sort((a,b)=>b[1]-a[1]).slice(0,3);
-      return `<div style="background:#F8FAFD;border:1px solid #DDE4F0;border-radius:8px;padding:10px">
-        <div style="font-size:10px;font-weight:700;color:#0F3A73;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f}</div>
-        <div style="font-size:9px;color:#8A96A8;margin-bottom:6px">${cur(fv.v)} total · ${fv.abs} abast.</div>
-        ${motFilial.map(([m,v],i)=>`
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-top:1px solid #F0F4FA;font-size:9px">
-            <span style="color:#4A5568;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px">${i+1}. ${m}</span>
-            <span style="font-weight:700;flex-shrink:0;margin-left:4px">${cur(v)}</span>
-          </div>`).join('')}
-      </div>`;
-    }).join('')}
-  </div>
-
-  <div class="rpt-footer">
-    <span>Relatório de Combustível — Página 2 de 2</span>
-    <span>Dados referentes ao período: ${mesSel} · Filial: ${filialSel}</span>
-  </div>
-</div>
-
-</body></html>`;
-
-  const w = window.open('','_blank','width=1200,height=900');
-  w.document.write(html);
-  w.document.close();
-  w.onload = ()=>{ w.focus(); w.print(); };
+  `;
 }
+</script>
 
+</body>
+</html>
