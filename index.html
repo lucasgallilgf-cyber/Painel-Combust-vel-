@@ -187,10 +187,10 @@ tr:hover td{background:var(--blue-light)}
     </div>
   </div>
   <div class="tbactions">
-    <button class="tbtn" onclick="toggleUpload()">
-      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+    <label for="fileInput" class="tbtn" style="cursor:pointer">
+      <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       Importar planilha
-    </button>
+    </label>
     <button class="tbtn" onclick="exportCSV()">
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Exportar CSV
@@ -215,16 +215,7 @@ tr:hover td{background:var(--blue-light)}
   </button>
 </div>
 
-<div class="upload-overlay" id="upZone"
-  ondragover="event.preventDefault();this.style.borderColor='var(--blue-dark)'"
-  ondragleave="this.style.borderColor=''"
-  ondrop="drop(event)">
-  <label for="fileInput" style="display:block;cursor:pointer;width:100%">
-    <strong>Clique ou arraste a planilha aqui</strong>
-    <p>Aceita <code>.xlsx</code>, <code>.xls</code> ou <code>.csv</code><br>
-    Colunas: <code>VALOR EMISSAO</code> · <code>LITROS</code> · <code>NOME REDUZIDO</code> · <code>PLACA</code> · <code>NOME MOTORISTA</code> · <code>TIPO COMBUSTIVEL</code> · <code>DATA TRANSACAO</code> · <code>TIPO FROTA</code> · <code>ODOMETRO</code></p>
-  </label>
-</div>
+
 <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="loadFile(event)" style="display:none">
 <input type="file" id="logoInput" accept="image/*" onchange="loadLogo(event)" style="display:none">
 
@@ -653,7 +644,7 @@ function renderTable(d){
 }
 
 // ── UPLOAD ─────────────────────────────────────────────────────────────────────
-function toggleUpload(){document.getElementById('upZone').classList.toggle('show');}
+function toggleUpload(){}
 function drop(e){e.preventDefault();const f=e.dataTransfer.files[0];if(f)processFile(f);}
 function loadFile(e){const f=e.target.files[0];if(f)processFile(f);}
 
